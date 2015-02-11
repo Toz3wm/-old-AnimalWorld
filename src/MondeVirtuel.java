@@ -29,6 +29,8 @@ public class MondeVirtuel {
 		return largeur;
 	}
 
+	
+	
 	public int getLongueur() {
 		return longueur;
 	}
