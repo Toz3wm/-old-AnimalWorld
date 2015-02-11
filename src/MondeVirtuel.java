@@ -40,9 +40,15 @@ public class MondeVirtuel {
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
 	}
 
-
-
 	public void animalCree(int[] position) {
 		matrice[position[0]][position[1]][1]++;
+	}
+	
+	public void nourritureCree(int[] position) {
+		matrice[position[0]][position[1]][0]++;
+	}
+	
+	public void nourritureMangee(int[] position) {
+		matrice[position[0]][position[1]][0]--;
 	}
 }
