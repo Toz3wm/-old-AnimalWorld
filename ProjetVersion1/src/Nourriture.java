@@ -2,8 +2,8 @@ import java.util.concurrent.Semaphore;
 
 
 public class Nourriture {
-	
-	private int[] position;
+	 
+	private int[] position; 
 	public MondeVirtuel leMonde;
 
 
