@@ -47,7 +47,7 @@ public class Animal extends Thread {
 		this.deplacementAbsolu[4][1] = 0 ;
 		this.deplacementAbsolu[5][1] = -1 ;
 		this.deplacementAbsolu[6][1] = -1 ;
-		this.deplacementAbsolu[7][1] = -1 ;
+		this.deplacementAbsolu[7][1] = -1  ;
 
 		this.orientation = orientationa;
 		this.pbaAvant = pbaAvanta;
