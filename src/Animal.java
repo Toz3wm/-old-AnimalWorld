@@ -1,5 +1,7 @@
+import java.io.Serializable ;
 
-public class Animal extends Thread {
+
+public class Animal implements Serializable  {
 
 
 	//l'int orientation désigne l'orientation de l'animal dans l'espace
@@ -117,7 +119,7 @@ public class Animal extends Thread {
 		}
 		
 		//mise à jour du déplacement: il désigne maintenant le déplacement absolu
-		deplacement  = (deplacement + orientation)%8;
+		deplacement  = (deplacement + orientation) % 8;
 		//Mise  à jour de l'orientation
 		orientation = deplacement; 
 		
@@ -143,18 +145,8 @@ public class Animal extends Thread {
 		this.leMonde.nourritureMangee(position);}
 	}
 	
-	public void run(){
-		//phase de détermination: tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
-		while (estomac > 0) {
-			bouger();
-			int duree = (int) (Math.random()*1000);
-			//dort pendant un tant aléatoire
-			try {
-				sleep(duree);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-		}
+	public int getEstomac(){
+		return estomac;
 	}
 }
 
