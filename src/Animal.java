@@ -6,6 +6,7 @@ public class Animal implements Serializable  {
 
 	//l'int orientation désigne l'orientation de l'animal dans l'espace
 	//0 désigne le nord, 1 le nord-est, 2 l'est... jusqu'à 7 le nord-ouest
+	private String name;
 	private int orientation;
 	//table des déplacements absolus
 	private final int[][] deplacementAbsolu;
@@ -20,12 +21,14 @@ public class Animal implements Serializable  {
 	private double pbaArriereDroit;
 
 	//estomac: compte la nourriture, si 0, l'animal s'arrête de bouger
-	private int estomac; //
+	private int estomac; 
+	private int score;
 	private MondeVirtuel leMonde;
 
 	public Animal(double pbaAvanta,
-			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde ) {
+			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde, String namea ) {
 		super();
+		this.name = namea;
 		this.leMonde = unMonde;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -58,10 +61,12 @@ public class Animal implements Serializable  {
 		this.pbaArriereGauche = pbaArriereGauchea;
 		this.pbaArriereDroit = pbaArriereDroita;
 		this.estomac = estomaca;
+		this.score = 0;
 	}
 
-	public Animal(int estomaca, MondeVirtuel unMonde ) {
+	public Animal(int estomaca, MondeVirtuel unMonde, String namea ) {
 		super();
+		this.name = namea;
 		this.leMonde = unMonde;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -90,18 +95,28 @@ public class Animal implements Serializable  {
 		this.deplacementAbsolu[7][1] = -1 ;
 
 		this.orientation = (int) (8*Math.random());
+		
+		
+		//module permettant de créer des probabilités aléatoires dans les 5 directions
 		this.pbaAvant = Math.random();
-		this.pbaAvantGauche = (1 - pbaAvant) * Math.random();
-		this.pbaAvantDroit = (1 - pbaAvant - pbaAvantGauche) *  Math.random();
-		this.pbaArriereGauche = (1 - pbaAvant - pbaAvantGauche - pbaArriereGauche) * Math.random();
-		this.pbaArriereDroit = (1 - pbaAvant - pbaAvantGauche - pbaArriereGauche - pbaArriereDroit);
+		this.pbaAvantGauche = Math.random();
+		this.pbaAvantDroit = Math.random();
+		this.pbaArriereGauche = Math.random();
+		this.pbaArriereDroit = Math.random();
+		double total = pbaAvant + pbaAvantGauche + pbaAvantDroit + pbaArriereDroit + pbaArriereGauche; 
+		this.pbaAvant /= total; 
+		this.pbaAvantGauche /= total;
+		this.pbaAvantDroit /= total;
+		this.pbaArriereGauche /= total;
+		this.pbaArriereDroit /= total;
 		this.estomac = estomaca;
+		this.score = 0;
 	}
 
 	public void bouger(){
 		double choix = Math.random();
 		int deplacement;
-		
+		estomac--;
 		// définit par rapport aux probabilités le déplacement relatif 
 		//avant: 0
 		//avant gauche: 1	avant droit:3
@@ -117,34 +132,33 @@ public class Animal implements Serializable  {
 		} else {
 			deplacement = 7;			
 		}
-		
+
 		//mise à jour du déplacement: il désigne maintenant le déplacement absolu
 		deplacement  = (deplacement + orientation) % 8;
 		//Mise  à jour de l'orientation
 		orientation = deplacement; 
-		
+
 		//on stocke l'ancienne position
 		int[] anciennePosition = new int[2];
 		anciennePosition=position;
-		
+
 		//mise à jour des coordonnées x et y
 		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%8;
 		position[1] = (position[1] + deplacementAbsolu[deplacement][1])%8;
-		
+
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
 		this.leMonde.mouvementAnimal(anciennePosition, position);
-		
-		while (this.estomac<20){
-			mange(position);
-		}
 	}
 
-	public void mange(int[] position){
+	public void mange(){
 		//si il y a de la nourriture disponible, il mange
-		if (this.leMonde.contenu(position[0],position[1])[0]!=0){
-		this.leMonde.nourritureMangee(position);}
+		if (this.leMonde.contenu(this.position[0],this.position[1])[0]!=0){
+			this.leMonde.nourritureMangee(this.position);}
+		//il faut mettre à jour l'estomac et le score
+		estomac++;
+		score++;
 	}
-	
+
 	public int getEstomac(){
 		return estomac;
 	}
