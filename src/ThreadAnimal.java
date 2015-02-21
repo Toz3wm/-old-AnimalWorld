@@ -4,13 +4,13 @@ public class ThreadAnimal extends Thread {
 	Animal animal;
 	
 	ThreadAnimal(double pbaAvanta,
-			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde ){
-		animal  = new Animal( pbaAvanta,  pbaAvantGauchea,  pbaAvantDroita,  pbaArriereGauchea,  pbaArriereDroita,  estomaca,  orientationa,  unMonde );
+			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde, String namea ){
+		animal  = new Animal( pbaAvanta,  pbaAvantGauchea,  pbaAvantDroita,  pbaArriereGauchea,  pbaArriereDroita,  estomaca,  orientationa,  unMonde, namea );
 		
 	}
 	
-	ThreadAnimal(int estomaca, MondeVirtuel unMonde){
-		animal = new Animal(estomaca, unMonde);
+	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea){
+		animal = new Animal(estomaca, unMonde, namea);
 	}
 	
 	public void run(){
