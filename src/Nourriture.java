@@ -14,4 +14,8 @@ public class Nourriture {
 		//commmit fin des vacances
 	}
 
+	
+	public int[] getPosition(){
+		return position;
+	}
 }
