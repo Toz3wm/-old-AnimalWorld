@@ -23,18 +23,17 @@ public class Animal implements Serializable  {
 	//estomac: compte la nourriture, si 0, l'animal s'arrête de bouger
 	private int estomac; 
 	private int score;
-	private MondeVirtuel leMonde;
+	
 
 	public Animal(double pbaAvanta,
-			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde, String namea ) {
+			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel leMonde, String namea ) {
 		super();
 		this.name = namea;
-		this.leMonde = unMonde;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
 		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
 		position[1] =(int)(Math.random()*leMonde.getLongueur());
-		this.leMonde.animalCree(position);
+		leMonde.animalCree(position);
 
 		this.deplacementAbsolu = new int[8][2];
 		this.deplacementAbsolu[0][0] = -1 ;
@@ -64,15 +63,14 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public Animal(int estomaca, MondeVirtuel unMonde, String namea ) {
+	public Animal(int estomaca, MondeVirtuel leMonde, String namea ) {
 		super();
 		this.name = namea;
-		this.leMonde = unMonde;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
 		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
 		position[1] =(int)(Math.random()*leMonde.getLongueur());
-		this.leMonde.animalCree(position);
+		leMonde.animalCree(position);
 
 		this.deplacementAbsolu = new int[8][2];
 		//déplacement absolu pour les abscisses x
@@ -113,7 +111,7 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public void bouger(){
+	public void bouger(MondeVirtuel leMonde){
 		double choix = Math.random();
 		int deplacement;
 		estomac--;
@@ -147,13 +145,13 @@ public class Animal implements Serializable  {
 		position[1] = (position[1] + deplacementAbsolu[deplacement][1])%8;
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
-		this.leMonde.mouvementAnimal(anciennePosition, position);
+		leMonde.mouvementAnimal(anciennePosition, position);
 	}
 
-	public void mange(){
+	public void mange(MondeVirtuel leMonde){
 		//si il y a de la nourriture disponible, il mange
-		if (this.leMonde.contenu(this.position[0],this.position[1])[0]!=0){
-			this.leMonde.nourritureMangee(this.position);}
+		if (leMonde.contenu(this.position[0],this.position[1])[0]!=0){
+			leMonde.nourritureMangee(this.position);}
 		//il faut mettre à jour l'estomac et le score
 		estomac++;
 		score++;
@@ -161,6 +159,14 @@ public class Animal implements Serializable  {
 
 	public int getEstomac(){
 		return estomac;
+	}
+	
+	public int getScore(){
+		return score;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }
 

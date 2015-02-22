@@ -10,8 +10,8 @@ import java.io.ObjectOutputStream;
 
 public class ThreadAnimal extends Thread {
 
-	Animal animal;
-	MondeVirtuel leMonde;
+	private Animal animal;
+	private MondeVirtuel leMonde;
 
 	ThreadAnimal(double pbaAvanta,
 			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde, String namea ){
@@ -49,6 +49,7 @@ public class ThreadAnimal extends Thread {
 		}
 	}
 
+	//méthode pour charger le profil d'un animal depuis la mémoire
 	public Animal loadAnimal(String filename){
 		//on délcare le flux entrant
 		ObjectInputStream input;
@@ -76,12 +77,15 @@ public class ThreadAnimal extends Thread {
 		return ani;
 	}
 
+	public Animal getAnimal(){
+		return animal;
+	}
 
 	public void run(){
 
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
-			animal.bouger();
+			animal.bouger(leMonde);
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 			try {
