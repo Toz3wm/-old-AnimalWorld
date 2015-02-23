@@ -1,15 +1,21 @@
+import java.util.Vector;
+
 
 public class MondeVirtuel {
 	private int largeur;
 	private int longueur;
 	//les cases du monde sont codées par une matrice de tableaux de deux cases: la première indique la quantité de nourriture sur la case, la deuxième indique le nombre d'animaux sur la case 
 	private int[][][] matrice;
-
-
+	private Vector<Animal> VecteurAnimaux;
+	private FenetreMonde FenetreDuMonde;
+	
 
 	public MondeVirtuel(int largeur, int longueur) {
 		this.largeur = largeur;
 		this.longueur = longueur;
+		this.VecteurAnimaux = new Vector<Animal>();
+		this.FenetreDuMonde = new FenetreMonde();
+		
 		this.matrice = new int[largeur][longueur][2];
 		for (int i = 0; i < largeur; i++){
 			for(int j = 0; j < longueur; j++){
@@ -19,10 +25,6 @@ public class MondeVirtuel {
 			}
 		}
 	}
-
-	
-	
-
 
 	public int getLargeur() {
 		return largeur;
@@ -41,8 +43,11 @@ public class MondeVirtuel {
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
 	}
 
-	public void animalCree(int[] position) {
+	public void animalCree(int[] position, Animal unAnimal) {
 		matrice[position[0]][position[1]][1]++;
+		this.VecteurAnimaux.add(unAnimal);
+		this.FenetreDuMonde.MiseAJourFenetre();
+		
 	}
 	
 	public void nourritureCree(int[] position) {
@@ -52,4 +57,10 @@ public class MondeVirtuel {
 	public void nourritureMangee(int[] position) {
 		matrice[position[0]][position[1]][0]--;
 	}
+
+	public Vector<Animal> getVecteurAnimaux() {
+		return VecteurAnimaux;
+	}
+
+	
 }

@@ -33,7 +33,7 @@ public class Animal implements Serializable  {
 		this.position = new int[2];
 		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
 		position[1] =(int)(Math.random()*leMonde.getLongueur());
-		leMonde.animalCree(position);
+		leMonde.animalCree(position, this);
 
 		this.deplacementAbsolu = new int[8][2];
 		this.deplacementAbsolu[0][0] = -1 ;
@@ -70,7 +70,7 @@ public class Animal implements Serializable  {
 		this.position = new int[2];
 		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
 		position[1] =(int)(Math.random()*leMonde.getLongueur());
-		leMonde.animalCree(position);
+		leMonde.animalCree(position,this);
 
 		this.deplacementAbsolu = new int[8][2];
 		//déplacement absolu pour les abscisses x
