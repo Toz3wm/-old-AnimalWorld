@@ -8,7 +8,6 @@ public class MondeVirtuel {
 
 
 	public MondeVirtuel(int largeur, int longueur) {
-		super();
 		this.largeur = largeur;
 		this.longueur = longueur;
 		this.matrice = new int[largeur][longueur][2];

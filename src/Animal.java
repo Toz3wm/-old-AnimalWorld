@@ -141,8 +141,8 @@ public class Animal implements Serializable  {
 		anciennePosition=position;
 
 		//mise à jour des coordonnées x et y
-		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%8;
-		position[1] = (position[1] + deplacementAbsolu[deplacement][1])%8;
+		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%leMonde.getLargeur();
+		position[1] = (position[1] + deplacementAbsolu[deplacement][1])%leMonde.getLongueur();
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
 		leMonde.mouvementAnimal(anciennePosition, position);
