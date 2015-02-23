@@ -86,6 +86,7 @@ public class ThreadAnimal extends Thread {
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
 			animal.bouger(leMonde);
+			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 			try {

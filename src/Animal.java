@@ -168,5 +168,9 @@ public class Animal implements Serializable  {
 	public String getName(){
 		return name;
 	}
+	
+	public int[] getPosition(){
+		return position;
+	}
 }
 
