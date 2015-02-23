@@ -90,7 +90,7 @@ public class ThreadAnimal extends Thread {
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 			try {
-				sleep(duree);
+				sleep(70);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}

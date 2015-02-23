@@ -14,43 +14,47 @@ import java.awt.Graphics2D;
 public class PanneauMonde extends JPanel { 
 
 	private FenetreMonde MaFenetreAssociee;
-	private Vector<Animal> VecteurAnimaux = this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux();
+	private Vector<Animal> VecteurAnimaux; 
 	//On simplifie l'écriture pour appeler le vecteur d'animaux
-			
+		
+
+	public PanneauMonde(FenetreMonde maFenetreAssociee, MondeVirtuel unMonde) {
+		super();
+		MaFenetreAssociee = maFenetreAssociee;
+		VecteurAnimaux =  unMonde.getVecteurAnimaux();
+		
+	}
 	
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
 	public void paintComponent(Graphics g){
 
 		//écrire
-		Font font = new Font("Courier", Font.BOLD, 20);
+		/*Font font = new Font("Courier", Font.BOLD, 20);
 		g.setFont(font);
 		g.setColor(Color.RED); 
-		g.drawString("coucou", 10, 20);
+		g.drawString("coucou", 10, 20);*/
 
 	
 	//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 	g.setColor(Color.white);
 	//On le dessine de sorte qu'il occupe toute la surface
 	g.fillRect(0, 0, this.getWidth(), this.getHeight());
+	g.setColor(Color.black);
+	g.drawRect(30, 30, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
 
 	/*il faux déssiner tour les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
 	qu'on a créé dans la classe MondeVirtuel*/
 
-	for (int i=0;i<this.VecteurAnimaux.size();i++){
+	if (this.MaFenetreAssociee.getMonMondeVirtuel().isLeMondeEstVide() == false){
+	for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().size();i++){
 		
 		//On redéfinit une couleur pour le rond
 		g.setColor(Color.red);
 		//On le dessine aux coordonnées souhaitées
-		g.fillOval(this.VecteurAnimaux.get(i).getPosition()[1], this.VecteurAnimaux.get(i).getPosition()[2], 50, 50);
+		//attention à tenir compte du centre du cercle comme coordonnée
+		g.fillOval(30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0], 30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 20, 20);
 	}
-	
+	}
 }
-
-	public void MiseAJourPanneau() {
-		VecteurAnimaux = this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux();
-		
-	}
-
-
 
 }

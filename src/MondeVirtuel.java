@@ -8,13 +8,14 @@ public class MondeVirtuel {
 	private int[][][] matrice;
 	private Vector<Animal> VecteurAnimaux;
 	private FenetreMonde FenetreDuMonde;
-	
+	private boolean leMondeEstVide;
 
 	public MondeVirtuel(int largeur, int longueur) {
 		this.largeur = largeur;
 		this.longueur = longueur;
 		this.VecteurAnimaux = new Vector<Animal>();
-		this.FenetreDuMonde = new FenetreMonde();
+		this.FenetreDuMonde = new FenetreMonde(this);
+		this.leMondeEstVide = true;
 		
 		this.matrice = new int[largeur][longueur][2];
 		for (int i = 0; i < largeur; i++){
@@ -41,12 +42,13 @@ public class MondeVirtuel {
 	public void mouvementAnimal(int[] anciennePosition, int[] nouvellePosition) {
 		matrice[anciennePosition[0]][anciennePosition[1]][1]--;
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
+		this.FenetreDuMonde.go();
 	}
 
 	public void animalCree(int[] position, Animal unAnimal) {
 		matrice[position[0]][position[1]][1]++;
 		this.VecteurAnimaux.add(unAnimal);
-		this.FenetreDuMonde.MiseAJourFenetre();
+		this.leMondeEstVide = false;
 		
 	}
 	
@@ -62,5 +64,8 @@ public class MondeVirtuel {
 		return VecteurAnimaux;
 	}
 
+	public boolean isLeMondeEstVide() {
+		return leMondeEstVide;
+	}
 	
 }
