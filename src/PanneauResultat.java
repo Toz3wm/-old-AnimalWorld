@@ -21,7 +21,7 @@ public class PanneauResultat extends JPanel {
 		diagrammePentagone(300,20, g);
 		diagrammePentagone(90,160, g);
 		diagrammePentagone(240,160, g);
-		
+		pentagone(20,20,g,0.8,0.6,0.4,0.2,0.5);
 	}
 
 	public void diagrammePentagone(int posX, int posY, Graphics g){
@@ -40,6 +40,19 @@ public class PanneauResultat extends JPanel {
 		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*1.6)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*1.6)));
 		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*0.8)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*0.8)));
 		
+	}
+	
+	//attention: posX et posY sont les coordonnées du carré dans lequel s'inscrit l'ensemble de la figure (les coordonnées du coin en haut à gauche donc)
+	public void pentagone(int posX, int posY, Graphics g, double av, double avd, double ard, double arg, double avg){
+		double tab[] = {av, avd, ard, arg, avg};
+		int tabX[] = new int[5];
+		int tabY[] = new int[5];
+		for(int i = 0; i <5; i++){
+			tabX[i] = (int) (posX+60-tab[i]*60*Math.cos(Math.PI/2 + Math.PI*0.4*i));
+			tabY[i] = (int) (posX+60-tab[i]*60*Math.sin(Math.PI/2 + Math.PI*0.4*i));
+		}
+		g.setColor(Color.red);
+		g.fillPolygon(tabX, tabY, 5);
 	}
 	
 }
