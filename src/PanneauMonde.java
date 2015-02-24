@@ -45,7 +45,7 @@ public class PanneauMonde extends JPanel {
 				g.setColor(Color.red);
 				//On le dessine aux coordonnées souhaitées
 				//attention à tenir compte du centre du cercle comme coordonnée
-				g.fillOval(30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0], 30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 20, 20);
+				g.fillOval(30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0], 30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 10, 10);
 			}
 
 			/*il faux déssiner toute la nourriture du monde, en parcourant toutes les cases de la matrice*/
@@ -64,7 +64,7 @@ public class PanneauMonde extends JPanel {
 
 					//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
 					for (int m=0;m<this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];m++){
-						g.fillOval(30-10+i, 30-10+j, 20, 20);
+						g.fillRect(30-10+i, 30-10+j, 5, 5);
 					}
 				}
 			}

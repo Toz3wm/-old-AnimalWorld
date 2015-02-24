@@ -172,5 +172,62 @@ public class Animal implements Serializable  {
 	public int[] getPosition(){
 		return position;
 	}
+
+	public int getOrientation() {
+		return orientation;
+	}
+
+	public double getPbaAvant() {
+		return pbaAvant;
+	}
+
+	public double getPbaAvantGauche() {
+		return pbaAvantGauche;
+	}
+
+	public double getPbaAvantDroit() {
+		return pbaAvantDroit;
+	}
+
+	public double getPbaArriereGauche() {
+		return pbaArriereGauche;
+	}
+
+	public double getPbaArriereDroit() {
+		return pbaArriereDroit;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setOrientation(int orientation) {
+		this.orientation = orientation;
+	}
+
+	public void setPbaAvant(double pbaAvant) {
+		this.pbaAvant = pbaAvant;
+	}
+
+	public void setPbaAvantGauche(double pbaAvantGauche) {
+		this.pbaAvantGauche = pbaAvantGauche;
+	}
+
+	public void setPbaAvantDroit(double pbaAvantDroit) {
+		this.pbaAvantDroit = pbaAvantDroit;
+	}
+
+	public void setPbaArriereGauche(double pbaArriereGauche) {
+		this.pbaArriereGauche = pbaArriereGauche;
+	}
+
+	public void setPbaArriereDroit(double pbaArriereDroit) {
+		this.pbaArriereDroit = pbaArriereDroit;
+	}
+
+	public void setEstomac(int estomac) {
+		this.estomac = estomac;
+	}
+	
 }
 
