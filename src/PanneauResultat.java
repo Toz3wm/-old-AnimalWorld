@@ -17,11 +17,15 @@ public class PanneauResultat extends JPanel {
 		//On redéfinit une couleur pour le rond
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		diagrammePentagone(20, 20, g);
-		diagrammePentagone(20,400, g);
+		diagrammePentagone(160,20, g);
+		diagrammePentagone(300,20, g);
+		diagrammePentagone(90,160, g);
+		diagrammePentagone(240,160, g);
+		
 	}
 
 	public void diagrammePentagone(int posX, int posY, Graphics g){
-		float[] tab = Color.RGBtoHSB(160, 160, 160, new float[3]);
+		float[] tab = Color.RGBtoHSB(180, 180, 180, new float[3]);
 		
 		g.setColor(Color.getHSBColor(tab[0],tab[1], tab[2]));
 		g.drawOval(posX,posY,120,120);
@@ -29,6 +33,12 @@ public class PanneauResultat extends JPanel {
 		g.drawOval(posX+24,posY+24,72,72);
 		g.drawOval(posX+36,posY+36,48,48);
 		g.drawOval(posX+48,posY+48,24,24);
+		g.setColor(Color.black);
+		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2)), (int) (posY+60-60*Math.sin(Math.PI/2)));
+		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*0.4)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*0.4)));
+		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*1.2)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*1.2)));
+		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*1.6)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*1.6)));
+		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*0.8)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*0.8)));
 		
 	}
 	

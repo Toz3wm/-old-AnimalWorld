@@ -10,7 +10,7 @@ public class FenetreResultat extends JFrame{
 
 	public FenetreResultat(){
 		    this.setTitle("Résultats de la simulation");
-		    this.setSize(300, 300);
+		    this.setSize(460, 340);
 		    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    this.setLocationRelativeTo(null);
 		    this.pan = new PanneauResultat();
