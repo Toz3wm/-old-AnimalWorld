@@ -67,5 +67,10 @@ public class MondeVirtuel {
 	public boolean isLeMondeEstVide() {
 		return leMondeEstVide;
 	}
+
+	public int[][][] getMatrice() {
+		return matrice;
+	}
+
 	
 }
