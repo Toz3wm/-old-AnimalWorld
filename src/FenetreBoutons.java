@@ -126,7 +126,7 @@ public void actionPerformed(ActionEvent e){  // on met en place les boutons
 			System.out.println(threadtest.getAnimal().getName());
 			threadtest.run();
 			
-			System.out.println( name +" créé!");
+			
 			pan.AfficheAnimalCree(getGraphics());
 		}
 		

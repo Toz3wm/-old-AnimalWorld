@@ -8,7 +8,7 @@ public static void main(String[] args){
 	//création du monde
 		MondeVirtuel theWorld = new MondeVirtuel(100,100);
 		//création des animaux
-		ThreadAnimal threadtest = new ThreadAnimal(0.2, 0.2, 0.2, 0.2, 0.2, 10, 1, theWorld, "titi");
+		ThreadAnimal threadtest = new ThreadAnimal(0.2, 0.2, 0.2, 0.2, 0.2,10, 1, theWorld, "titi");
 		ThreadAnimal threadtest2 = new ThreadAnimal(0.2, 0.2, 0.2, 0.2, 0.2, 10, 1, theWorld, "tit");
 		threadtest.saveAnimal("titi.txt");
 		ThreadAnimal test22 = new ThreadAnimal("titi.txt", theWorld);
@@ -17,7 +17,7 @@ public static void main(String[] args){
 		threadtest2.run();
 		
 		//création de nourriture
-		int[] p1={5,5};
+		/*int[] p1={5,5};
 		new Nourriture(p1);
 		
 		int [] p2 = new int[2];
@@ -34,13 +34,11 @@ public static void main(String[] args){
 		
 		int [] p5 = new int[2];
 		p5[0]=50;p5[1]=50;
-		Nourriture n5 = new Nourriture(p5);
+		Nourriture n5 = new Nourriture(p5);*/
 		
 		
 		FenetreResultat fen = new FenetreResultat();
-		System.out.println(Math.cos(90));
-		System.out.println(Math.sin(90));
-		System.out.println(Math.cos(3.14/2));
+		
 		
 }
 
