@@ -9,7 +9,7 @@ public class MondeVirtuel {
 	private Vector<Animal> VecteurAnimaux;
 	private FenetreMonde FenetreDuMonde;
 	private boolean leMondeEstVide;
-	private FenetreBoutons LaFenetreBoutons;
+	//private FenetreBoutons LaFenetreBoutons;
 
 	public MondeVirtuel(int largeur, int longueur) {
 		this.largeur = largeur;
@@ -17,7 +17,7 @@ public class MondeVirtuel {
 		this.VecteurAnimaux = new Vector<Animal>();
 		this.FenetreDuMonde = new FenetreMonde(this);
 		this.leMondeEstVide = true;
-		this.LaFenetreBoutons = new FenetreBoutons(this);
+		//this.LaFenetreBoutons = new FenetreBoutons(this);
 		
 		this.matrice = new int[largeur][longueur][2];
 		for (int i = 0; i < largeur; i++){
@@ -72,6 +72,14 @@ public class MondeVirtuel {
 
 	public int[][][] getMatrice() {
 		return matrice;
+	}
+
+	public FenetreMonde getFenetreDuMonde() {
+		return FenetreDuMonde;
+	}
+
+	public void setFenetreDuMonde(FenetreMonde fenetreDuMonde) {
+		FenetreDuMonde = fenetreDuMonde;
 	}
 
 	

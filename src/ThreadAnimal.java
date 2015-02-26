@@ -56,7 +56,7 @@ public class ThreadAnimal extends Thread {
 		//on déclare l'animal qui sera créé
 		//attention, l'initialisation de l'animal est ici inutile et ne sert qu'à supprimer l'erreur qui apparaît sinon
 		//prudence donc, ce n'est peut-être pas la bonne solution ! 
-		Animal ani = new Animal(0, 0, 0, 0, 0, 0, 0, leMonde, "titi");
+		Animal ani = null;//new Animal(0, 0, 0, 0, 0, 0, 0, leMonde, "titi");
 		try {
 			//on initialise le flux
 			input = new ObjectInputStream(
@@ -90,7 +90,7 @@ public class ThreadAnimal extends Thread {
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 			try {
-				sleep(70);
+				sleep(700);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}

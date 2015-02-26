@@ -26,7 +26,14 @@ public class Animal implements Serializable  {
 	
 
 	public Animal(double pbaAvanta,
-			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel leMonde, String namea ) {
+			double pbaAvantGauchea, 
+			double pbaAvantDroita, 
+			double pbaArriereGauchea, 
+			double pbaArriereDroita, 
+			int estomaca, 
+			int orientationa, 
+			MondeVirtuel leMonde, 
+			String namea ) {
 		super();
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire

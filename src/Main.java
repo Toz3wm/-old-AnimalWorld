@@ -4,7 +4,7 @@ public class Main {
 	
 	
 public static void main(String[] args){
-	
+	/*
 	//création du monde
 		MondeVirtuel theWorld = new MondeVirtuel(100,100);
 		//création des animaux
@@ -15,6 +15,7 @@ public static void main(String[] args){
 		System.out.println(threadtest.getAnimal().getName());
 		threadtest.run();
 		threadtest2.run();
+		*/
 		
 		//création de nourriture
 		/*int[] p1={5,5};
@@ -38,6 +39,7 @@ public static void main(String[] args){
 		
 		
 		FenetreResultat fen = new FenetreResultat();
+		new FenetreCreationMonde();
 		
 		
 }

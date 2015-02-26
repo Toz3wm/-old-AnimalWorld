@@ -24,6 +24,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	private int estomac;
 	private String name;
 	private int orientation;
+	private int quantite;
 	
 	JButton button1;
     JButton button2;
@@ -38,6 +39,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
     JLabel label6;
     JLabel label7;
     JLabel label8;
+    JLabel label9;
     
     JTextField TpbaAvant;
     JTextField TpbaAvantGauche;
@@ -47,12 +49,13 @@ public class FenetreBoutons extends JFrame implements ActionListener {
     JTextField estomacInitial;
     JTextField nomAnimal;
     JTextField Torientation;
+    JTextField Tquantité;
 
 	public FenetreBoutons(MondeVirtuel unMonde){
 		this.MonMondeVirtuel = unMonde;
 		this.pan = new PanneauBouton(this, unMonde);
 		this.setTitle("Interface boutons");
-		this.setSize(100,100);
+		this.setSize(400,400);
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,6 +75,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		label6= new JLabel("Quantité de nourriture initiale dans l'estomac");
 		label7= new JLabel("Nom de l'animal");
 		label8= new JLabel("Orientation de l'animal initiale");
+		label9= new JLabel("Quantité à créer");
 		
 		TpbaAvant= new JTextField("20");
 		TpbaAvantGauche= new JTextField("20");
@@ -81,7 +85,8 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	    estomacInitial = new JTextField("10");
 	    nomAnimal =new JTextField("TOTO");
 	    Torientation =new JTextField("1");
-		
+	    Tquantité =new JTextField("10");
+	    
 		button1 = new JButton ("OK");
 		
 		button1.addActionListener(this);
@@ -95,6 +100,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		pan.add(label6);pan.add(estomacInitial);
 		pan.add(label7);pan.add(nomAnimal);
 		pan.add(label8);pan.add(Torientation);
+		pan.add(label9);pan.add(Tquantité);
 		
 		pan.add(button1);
 		
@@ -109,29 +115,63 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	
 public void actionPerformed(ActionEvent e){  // on met en place les boutons
 			
-	//on convertit le texte string en int, on divise par 100 pour obtenir la pba <1
-			pbaAvant=Integer.parseInt(TpbaAvant.getText())/100;
-			pbaAvantGauche = Integer.parseInt(TpbaAvantGauche.getText())/100;
-			pbaAvantDroit = Integer.parseInt(TpbaAvantDroit.getText())/100;
-			pbaArriereGauche = Integer.parseInt(TpbaArriereGauche.getText())/100;
-			pbaArriereDroit = Integer.parseInt(TpbaArriereDroit.getText())/100;
+	//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
+			pbaAvant= Float.parseFloat(TpbaAvant.getText())/100;
+			pbaAvantGauche = Float.parseFloat(TpbaAvantGauche.getText())/100;
+			pbaAvantDroit = Float.parseFloat(TpbaAvantDroit.getText())/100;
+			pbaArriereGauche = Float.parseFloat(TpbaArriereGauche.getText())/100;
+			pbaArriereDroit = Float.parseFloat(TpbaArriereDroit.getText())/100;
 			estomac = Integer.parseInt(estomacInitial.getText());
 			orientation =Integer.parseInt(Torientation.getText());
 			name = (nomAnimal.getText());
 		
 		//bouton1 : "ok" on créé l'animal
-		if (e.getSource().equals(button1)){ 	
-			ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,pbaAvantGauche,pbaAvantDroit,pbaArriereGauche,pbaArriereDroit,estomac,orientation, this.getMonMondeVirtuel(), name);
+		if (e.getSource().equals(button1)){ 
+			MonMondeVirtuel.getFenetreDuMonde().go();
+			
+			//on crée quantité - 1	 fois l'animal
+			for (int i=0;i<quantite;i++){
+			ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
+					pbaAvantGauche,
+					pbaAvantDroit,
+					pbaArriereGauche,
+					pbaArriereDroit,
+					estomac,
+					orientation, 
+					this.getMonMondeVirtuel(), 
+					name);
+			MonMondeVirtuel.getFenetreDuMonde().go();
 			threadtest.saveAnimal("titi.txt");
 			System.out.println(threadtest.getAnimal().getName());
 			threadtest.run();
+			MonMondeVirtuel.getFenetreDuMonde().go();}
 			
 			
+			//on crée une dernière fois l'animal et on ne sauvegarde qu'une fois
+			/*ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
+					pbaAvantGauche,
+					pbaAvantDroit,
+					pbaArriereGauche,
+					pbaArriereDroit,
+					estomac,
+					orientation, 
+					this.getMonMondeVirtuel(), 
+					name);
+			
+			MonMondeVirtuel.getFenetreDuMonde().go();
+			System.out.println(threadtest.getAnimal().getName());
+			threadtest.run();
+			MonMondeVirtuel.getFenetreDuMonde().go();
+			*/
 			pan.AfficheAnimalCree(getGraphics());
 		}
 		
 		
 	}
+
+public void setMonMondeVirtuel(MondeVirtuel monMondeVirtuel) {
+	MonMondeVirtuel = monMondeVirtuel;
+}
 	
 	
 }    

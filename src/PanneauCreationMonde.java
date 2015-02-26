@@ -11,11 +11,11 @@ import javax.imageio.ImageIO;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-public class PanneauBouton extends JPanel { 
+public class PanneauCreationMonde extends JPanel { 
 
-	private FenetreBoutons MaFenetreAssociee;
+	private FenetreCreationMonde MaFenetreAssociee;
 
-	public PanneauBouton(FenetreBoutons maFenetreAssociee, MondeVirtuel unMonde) {
+	public PanneauCreationMonde(FenetreCreationMonde maFenetreAssociee) {
 		super();
 		MaFenetreAssociee = maFenetreAssociee;
 	}
@@ -31,7 +31,7 @@ public class PanneauBouton extends JPanel {
 		Font font = new Font("Courier", Font.BOLD, 20);
 	    g.setFont(font);
 	    g.setColor(Color.RED); 
-	    //g.drawString("coucou", 10, 20);
+	    g.drawString("coucou", 10, 20);
 	}
 
 }
