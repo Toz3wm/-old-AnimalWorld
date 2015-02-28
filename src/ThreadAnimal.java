@@ -90,10 +90,15 @@ public class ThreadAnimal extends Thread {
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 			try {
-				sleep(700);
+				sleep(100);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 		}
 	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
+	}
+	
 }

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.Serializable ;
 
 
@@ -14,6 +15,7 @@ public class Animal implements Serializable  {
 	private int[] position;
 
 	//5 caractères à définir
+	private Color maCouleur;
 	private double pbaAvant;
 	private double pbaAvantGauche;
 	private double pbaAvantDroit;
@@ -25,6 +27,7 @@ public class Animal implements Serializable  {
 	private int score;
 	
 
+
 	public Animal(double pbaAvanta,
 			double pbaAvantGauchea, 
 			double pbaAvantDroita, 
@@ -35,6 +38,7 @@ public class Animal implements Serializable  {
 			MondeVirtuel leMonde, 
 			String namea ) {
 		super();
+		
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -72,6 +76,8 @@ public class Animal implements Serializable  {
 
 	public Animal(int estomaca, MondeVirtuel leMonde, String namea ) {
 		super();
+		
+		
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -235,6 +241,15 @@ public class Animal implements Serializable  {
 	public void setEstomac(int estomac) {
 		this.estomac = estomac;
 	}
+
+	public Color getMaCouleur() {
+		return maCouleur;
+	}
+
+	public void setMaCouleur(Color maCouleur) {
+		this.maCouleur = maCouleur;
+	}
+	
 	
 }
 

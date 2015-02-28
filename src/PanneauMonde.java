@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 
 public class PanneauMonde extends JPanel { 
 
+	private Color maCouleur;
 	private FenetreMonde MaFenetreAssociee;
 	private Vector<Animal> VecteurAnimaux; 
 	//On simplifie l'écriture pour appeler le vecteur d'animaux
@@ -42,7 +43,9 @@ public class PanneauMonde extends JPanel {
 			for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().size();i++){
 
 				//On redéfinit une couleur pour le rond
-				g.setColor(Color.red);
+				//on l'info couleur de l'animal
+				maCouleur = this.getMaFenetreAssociee().getMonMondeVirtuel().getVecteurAnimaux().get(i).getMaCouleur();
+				g.setColor(maCouleur);
 				//On le dessine aux coordonnées souhaitées
 				//attention à tenir compte du centre du cercle comme coordonnée
 				g.fillOval(30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0], 30-10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 10, 10);
@@ -69,6 +72,14 @@ public class PanneauMonde extends JPanel {
 				}
 			}
 		}
+	}
+
+	public FenetreMonde getMaFenetreAssociee() {
+		return MaFenetreAssociee;
+	}
+
+	public void setMaFenetreAssociee(FenetreMonde maFenetreAssociee) {
+		MaFenetreAssociee = maFenetreAssociee;
 	}
 
 }

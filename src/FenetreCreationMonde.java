@@ -77,7 +77,7 @@ public void actionPerformed(ActionEvent e){  // on met en place les boutons
 		//bouton1 : "créer", on crée le monde et on lance la fenetre de choix d'option de création de l'animal
 		if (e.getSource().equals(button1)){ 	
 			this.theWorld = new MondeVirtuel(largeur,longueur);
-			new FenetreOptionCreationAnimal(this);
+			new FenetreBoutons(this.getTheWorld());
 			
 			
 			pan.AfficheAnimalCree(getGraphics());

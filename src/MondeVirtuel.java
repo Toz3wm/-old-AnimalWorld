@@ -1,7 +1,10 @@
+import java.awt.Color;
 import java.util.Vector;
 
 
 public class MondeVirtuel {
+	
+	private Color CouleurCourante;
 	private int largeur;
 	private int longueur;
 	//les cases du monde sont codées par une matrice de tableaux de deux cases: la première indique la quantité de nourriture sur la case, la deuxième indique le nombre d'animaux sur la case 
@@ -80,6 +83,14 @@ public class MondeVirtuel {
 
 	public void setFenetreDuMonde(FenetreMonde fenetreDuMonde) {
 		FenetreDuMonde = fenetreDuMonde;
+	}
+
+	public Color getCouleurCourante() {
+		return CouleurCourante;
+	}
+
+	public void setCouleurCourante(Color couleurCourante) {
+		CouleurCourante = couleurCourante;
 	}
 
 	
