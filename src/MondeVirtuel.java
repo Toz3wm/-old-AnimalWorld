@@ -58,6 +58,7 @@ public class MondeVirtuel {
 	}
 	
 	public void nourritureCree(int[] position) {
+
 		matrice[position[0]][position[1]][0]++;
 	}
 	

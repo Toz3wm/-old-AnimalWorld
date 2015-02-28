@@ -154,8 +154,18 @@ public class Animal implements Serializable  {
 		anciennePosition=position;
 
 		//mise à jour des coordonnées x et y
-		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%leMonde.getLargeur();
-		position[1] = (position[1] + deplacementAbsolu[deplacement][1])%leMonde.getLongueur();
+		
+		//on gère le cas du modulo négatif, en rajoutant la largeur si c'est négatif
+		if (position[0]>=0){
+		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%leMonde.getLargeur();}
+		else {
+			position[0] =( position[0] + deplacementAbsolu[deplacement][0] +leMonde.getLargeur())%leMonde.getLargeur();
+		}
+		if (position[1]>=0){
+			position[1] =( position[1] + deplacementAbsolu[deplacement][1])%leMonde.getLongueur();}
+			else {
+				position[1] =( position[1] + deplacementAbsolu[deplacement][1] +leMonde.getLongueur())%leMonde.getLongueur();
+			}
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
 		leMonde.mouvementAnimal(anciennePosition, position);

@@ -14,7 +14,7 @@ public class FenetreMonde extends JFrame {
 		this.MonMondeVirtuel = unMonde;
 		this.MonPan = new PanneauMonde(this, unMonde);
 		this.setTitle("Représentation du monde torique");
-		this.setSize(this.MonMondeVirtuel.getLargeur()+100, this.MonMondeVirtuel.getLongueur()+100);
+		this.setSize(this.MonMondeVirtuel.getLargeur(), this.MonMondeVirtuel.getLongueur());
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,6 +37,7 @@ public class FenetreMonde extends JFrame {
 
 		//On redessine notre Panneau
 		MonPan.repaint();
+		System.out.println("go");
 
 	}
 }    

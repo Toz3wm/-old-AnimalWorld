@@ -7,8 +7,9 @@ public class Nourriture {
 	public MondeVirtuel leMonde;
 
 
-	public Nourriture(int[] position) {
+	public Nourriture(int[] position, MondeVirtuel unMonde) {
 		super();
+		this.leMonde = unMonde;
 		this.position=position;
 		this.leMonde.nourritureCree(position);
 		//commmit fin des vacances
