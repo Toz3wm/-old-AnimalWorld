@@ -32,12 +32,12 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		
 		this.pan = new PanneauCreationMonde(this);
 		this.setTitle("Interface Création Monde");
-		this.setSize(400,400);
+		this.setSize(400,200);
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/*On prévient notre JFrame que notre JPanel
-    sera son content pane  c'est dans celui-ci que nous placerons nos composant */
+    sera son content pane  c'est dans celui-ci que nous placerons nos composants */
 		this.setContentPane(pan);
 		this.setVisible(true);
 		
@@ -62,7 +62,7 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		
 		pan.add(button1);
 		
-		
+
 		
 	}
 

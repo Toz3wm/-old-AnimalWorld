@@ -51,7 +51,7 @@ public class PanneauMonde extends JPanel {
 				g.fillOval(10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0],10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 10, 10);
 			}
 
-			/*il faux déssiner toute la nourriture du monde, en parcourant toutes les cases de la matrice*/
+			/*il faux dessiner toute la nourriture du monde, en parcourant toutes les cases de la matrice*/
 
 			//on parcourt les abscisses horizontalement
 			// x = i

@@ -16,13 +16,13 @@ public class PanneauCreationMonde extends JPanel {
 	private FenetreCreationMonde MaFenetreAssociee;
 
 	public PanneauCreationMonde(FenetreCreationMonde maFenetreAssociee) {
-		super();
 		MaFenetreAssociee = maFenetreAssociee;
+		this.setBackground(Color.white);
 	}
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
 	public void paintComponent(Graphics g){
-
+		System.out.println("Paintcomponent de la fenetre de crea de monde appelé");
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 		g.setColor(Color.white);
 	}
