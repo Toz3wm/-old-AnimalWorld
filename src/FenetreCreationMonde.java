@@ -69,7 +69,7 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 	}
 
 
-	public void actionPerformed(ActionEvent e){  // on met en place les boutons
+	public void actionPerformed(ActionEvent f){  // on met en place les boutons
 
 		//on convertit le texte string en int
 		longueur=Integer.parseInt(Tlongueur.getText());
@@ -77,7 +77,7 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 
 
 		//bouton1 : "créer", on crée le monde et on lance la fenetre de choix d'option de création de l'animal
-		if (e.getSource().equals(button1)){ 	
+		if (f.getSource().equals(button1)){ 	
 			this.theWorld = new MondeVirtuel(largeur,longueur,c);
 			new FenetreBoutons(this.theWorld);
 

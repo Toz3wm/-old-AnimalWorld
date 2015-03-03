@@ -22,7 +22,7 @@ public class PanneauCreationMonde extends JPanel {
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
 	public void paintComponent(Graphics g){
-		System.out.println("Paintcomponent de la fenetre de crea de monde appelé");
+		//System.out.println("Paintcomponent de la fenetre de crea de monde appelé");
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 		g.setColor(Color.white);
 	}

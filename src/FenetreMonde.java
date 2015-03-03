@@ -25,8 +25,8 @@ public class FenetreMonde extends JFrame {
 		this.setVisible(true);
 
 		//on lance le mouvement
-		this.go();
-
+		System.out.println("ggo");
+		this.MonPan.revalidate();
 	}
 
 

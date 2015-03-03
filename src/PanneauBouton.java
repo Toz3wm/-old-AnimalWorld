@@ -21,16 +21,16 @@ public class PanneauBouton extends JPanel {
 	}
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics gg){
 
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
-		g.setColor(Color.white);
+		gg.setColor(Color.white);
 	}
 	
-	public void AfficheAnimalCree(Graphics g){
+	public void AfficheAnimalCree(Graphics gg){
 		Font font = new Font("Courier", Font.BOLD, 20);
-	    g.setFont(font);
-	    g.setColor(Color.RED); 
+	    gg.setFont(font);
+	    gg.setColor(Color.RED); 
 	    //g.drawString("coucou", 10, 20);
 	}
 

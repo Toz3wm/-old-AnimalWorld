@@ -34,9 +34,9 @@ public class PanneauMonde extends JPanel {
 		//On le dessine de sorte qu'il occupe toute la surface
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.black);
-		g.drawRect(0, 0, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
+		g.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
 
-		/*il faux déssiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
+		/*il faux dessiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
 	qu'on a créé dans la classe MondeVirtuel*/
 
 		/*if (this.MaFenetreAssociee.getMonMondeVirtuel().isLeMondeEstVide() == false)*/
