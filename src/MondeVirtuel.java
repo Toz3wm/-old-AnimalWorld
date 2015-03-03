@@ -3,7 +3,7 @@ import java.util.Vector;
 
 
 public class MondeVirtuel {
-	
+	private constante c;
 	private Color CouleurCourante;
 	private int largeur;
 	private int longueur;
@@ -14,11 +14,11 @@ public class MondeVirtuel {
 	private boolean leMondeEstVide;
 	//private FenetreBoutons LaFenetreBoutons;
 
-	public MondeVirtuel(int largeur, int longueur) {
+	public MondeVirtuel(int largeur, int longueur, constante c) {
 		this.largeur = largeur;
 		this.longueur = longueur;
 		this.VecteurAnimaux = new Vector<Animal>();
-		this.FenetreDuMonde = new FenetreMonde(this);
+		this.FenetreDuMonde = new FenetreMonde(this,c);
 		this.leMondeEstVide = true;
 		//this.LaFenetreBoutons = new FenetreBoutons(this);
 		

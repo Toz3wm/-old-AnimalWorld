@@ -6,14 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class FenetreMonde extends JFrame {
-
+	private constante c;
 	private PanneauMonde MonPan; 
 	MondeVirtuel MonMondeVirtuel;
 
-	public FenetreMonde(MondeVirtuel unMonde){
+	public FenetreMonde(MondeVirtuel unMonde, constante c){
+		this.c = c;
 		this.MonMondeVirtuel = unMonde;
 		this.MonPan = new PanneauMonde(this, unMonde);
-		this.setTitle("Représentation du monde torique");
+		this.setTitle(c.titreMonde);
 		this.setSize(this.MonMondeVirtuel.getLargeur(), this.MonMondeVirtuel.getLongueur());
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
