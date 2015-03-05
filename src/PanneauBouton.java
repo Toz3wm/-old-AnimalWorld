@@ -21,17 +21,25 @@ public class PanneauBouton extends JPanel {
 	}
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
-	public void paintComponent(Graphics gg){
+	public void paintComponent(Graphics g){
 
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
-		gg.setColor(Color.white);
+		g.setColor(Color.white);
+	
+		g.setColor(Color.BLUE); 
+	    //on trace des lignes de séparation entre les constructeurs
+	    /*g.drawLine(0,this.MaFenetreAssociee.getHeight()*9/18, 
+	    		this.MaFenetreAssociee.getWidth(),this.MaFenetreAssociee.getHeight()*9/18);
+	    g.drawLine(0,this.MaFenetreAssociee.getHeight()*13/18, 
+	    		this.MaFenetreAssociee.getWidth(),this.MaFenetreAssociee.getHeight()*13/18);
+	    g.drawLine(0,this.MaFenetreAssociee.getHeight()*15/18, 
+	    		this.MaFenetreAssociee.getWidth(),this.MaFenetreAssociee.getHeight()*15/18);
+	    */
 	}
 	
-	public void AfficheAnimalCree(Graphics gg){
+	/*public void AfficheAnimalCree(Graphics g){
 		Font font = new Font("Courier", Font.BOLD, 20);
-	    gg.setFont(font);
-	    gg.setColor(Color.RED); 
-	    //g.drawString("coucou", 10, 20);
-	}
+	    g.setFont(font);
+	}*/
 
 }

@@ -10,17 +10,35 @@ import java.io.ObjectOutputStream;
 
 public class ThreadAnimal extends Thread {
 
+	private constante c;
 	private Animal animal;
 	private MondeVirtuel leMonde;
 
 	ThreadAnimal(double pbaAvanta,
-			double pbaAvantGauchea, double pbaAvantDroita, double pbaArriereGauchea, double pbaArriereDroita, int estomaca, int orientationa, MondeVirtuel unMonde, String namea ){
-		animal  = new Animal( pbaAvanta,  pbaAvantGauchea,  pbaAvantDroita,  pbaArriereGauchea,  pbaArriereDroita,  estomaca,  orientationa,  unMonde, namea );
+			double pbaAvantGauchea, 
+			double pbaAvantDroita, 
+			double pbaArriereGauchea, 
+			double pbaArriereDroita, 
+			int estomaca, 
+			int orientationa, 
+			MondeVirtuel unMonde, 
+			String namea,
+			constante c){
+		animal  = new Animal( pbaAvanta,
+				pbaAvantGauchea,
+				pbaAvantDroita,
+				pbaArriereGauchea,
+				pbaArriereDroita,
+				estomaca,
+				orientationa,
+				unMonde,
+				namea, 
+				c);
 		leMonde = unMonde;
 	}
 
-	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea){
-		animal = new Animal(estomaca, unMonde, namea);
+	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, constante c){
+		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
 	}
 
@@ -54,9 +72,7 @@ public class ThreadAnimal extends Thread {
 		//on délcare le flux entrant
 		ObjectInputStream input;
 		//on déclare l'animal qui sera créé
-		//attention, l'initialisation de l'animal est ici inutile et ne sert qu'à supprimer l'erreur qui apparaît sinon
-		//prudence donc, ce n'est peut-être pas la bonne solution ! 
-		Animal ani = null;//new Animal(0, 0, 0, 0, 0, 0, 0, leMonde, "titi");
+		Animal ani = null;
 		try {
 			//on initialise le flux
 			input = new ObjectInputStream(

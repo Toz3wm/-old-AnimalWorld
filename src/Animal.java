@@ -5,6 +5,7 @@ import java.io.Serializable ;
 public class Animal implements Serializable  {
 
 
+	private constante c;
 	//l'int orientation désigne l'orientation de l'animal dans l'espace
 	//0 désigne le nord, 1 le nord-est, 2 l'est... jusqu'à 7 le nord-ouest
 	private String name;
@@ -36,9 +37,10 @@ public class Animal implements Serializable  {
 			int estomaca, 
 			int orientationa, 
 			MondeVirtuel leMonde, 
-			String namea ) {
+			String namea,
+			constante c) {
 		super();
-		
+		this.c = c;
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -47,22 +49,22 @@ public class Animal implements Serializable  {
 		leMonde.animalCree(position, this);
 
 		this.deplacementAbsolu = new int[8][2];
-		this.deplacementAbsolu[0][0] = -1 ;
-		this.deplacementAbsolu[1][0] = -1 ;
-		this.deplacementAbsolu[2][0] = 0  ;
-		this.deplacementAbsolu[3][0] = 1  ;
-		this.deplacementAbsolu[4][0] = 1  ;
-		this.deplacementAbsolu[5][0] = 1  ;
-		this.deplacementAbsolu[6][0] = 0  ;
-		this.deplacementAbsolu[7][0] = -1 ;
-		this.deplacementAbsolu[0][1] = 0  ;
-		this.deplacementAbsolu[1][1] = 1  ; 
-		this.deplacementAbsolu[2][1] = 1  ;
-		this.deplacementAbsolu[3][1] = 1  ; 
-		this.deplacementAbsolu[4][1] = 0  ;
-		this.deplacementAbsolu[5][1] = -1 ;
-		this.deplacementAbsolu[6][1] = -1 ;
-		this.deplacementAbsolu[7][1] = -1 ;
+		this.deplacementAbsolu[c.NORD][0] = -1 ;
+		this.deplacementAbsolu[c.NORDEST][0] = -1 ;
+		this.deplacementAbsolu[c.EST][0] = 0  ;
+		this.deplacementAbsolu[c.SUDEST][0] = 1  ;
+		this.deplacementAbsolu[c.SUD][0] = 1  ;
+		this.deplacementAbsolu[c.SUDOUEST][0] = 1  ;
+		this.deplacementAbsolu[c.OUEST][0] = 0  ;
+		this.deplacementAbsolu[c.NORDOUEST][0] = -1 ;
+		this.deplacementAbsolu[c.NORD][1] = 0  ;
+		this.deplacementAbsolu[c.NORDEST][1] = 1  ; 
+		this.deplacementAbsolu[c.EST][1] = 1  ;
+		this.deplacementAbsolu[c.SUDEST][1] = 1  ; 
+		this.deplacementAbsolu[c.SUD][1] = 0  ;
+		this.deplacementAbsolu[c.SUDOUEST][1] = -1 ;
+		this.deplacementAbsolu[c.OUEST][1] = -1 ;
+		this.deplacementAbsolu[c.NORDOUEST][1] = -1 ;
 
 		this.orientation = orientationa;
 		this.pbaAvant = pbaAvanta;
@@ -74,10 +76,10 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public Animal(int estomaca, MondeVirtuel leMonde, String namea ) {
+	public Animal(int estomaca, MondeVirtuel leMonde, String namea, constante c ) {
 		super();
 		
-		
+		this.c = c;
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -133,19 +135,19 @@ public class Animal implements Serializable  {
 		//avant gauche: 1	avant droit:3
 		//arrière gauche: 5  arrière droit: 7
 		if (choix <= pbaAvant) {
-			deplacement = 0;
+			deplacement = c.AVANT;
 		} else if (choix <=(pbaAvant + pbaAvantDroit)){
-			deplacement = 1;
+			deplacement = c.AVANTDROIT;
 		} else if (choix <= (pbaAvant + pbaAvantDroit + pbaArriereDroit)) {
-			deplacement = 3;
+			deplacement = c.ARRIEREDROIT;
 		} else if (choix <= (pbaAvant + pbaAvantDroit + pbaArriereDroit + pbaArriereGauche)) {
-			deplacement = 5;
+			deplacement = c.ARRIEREGAUCHE;
 		} else {
-			deplacement = 7;			
+			deplacement = c.AVANTGAUCHE;			
 		}
 
 		//mise à jour du déplacement: il désigne maintenant le déplacement absolu
-		deplacement  = (deplacement + orientation) % 8;
+		deplacement  = (deplacement + orientation) % c.NB_DIRECTIONS;
 		//Mise  à jour de l'orientation
 		orientation = deplacement; 
 
