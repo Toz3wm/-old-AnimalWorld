@@ -3,7 +3,7 @@ import java.util.Vector;
 
 
 public class MondeVirtuel {
-	private constante c;
+	private GlobalVars c;
 	private Color CouleurCourante;
 	private int largeur;
 	private int longueur;
@@ -14,7 +14,8 @@ public class MondeVirtuel {
 	private boolean leMondeEstVide;
 	//private FenetreBoutons LaFenetreBoutons;
 
-	public MondeVirtuel(int largeur, int longueur, constante c) {
+	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
+		this.c = c;
 		this.largeur = largeur;
 		this.longueur = longueur;
 		this.VecteurAnimaux = new Vector<Animal>();

@@ -6,17 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class FenetreMonde extends JFrame {
-	private constante c;
+	private GlobalVars c;
 	private PanneauMonde MonPan; 
 	MondeVirtuel MonMondeVirtuel;
 
-	public FenetreMonde(MondeVirtuel unMonde, constante c){
+	public FenetreMonde(MondeVirtuel unMonde, GlobalVars c){
 		this.c = c;
 		this.MonMondeVirtuel = unMonde;
 		this.MonPan = new PanneauMonde(this, unMonde);
 		this.setTitle(c.titreMonde);
-		this.setSize(this.MonMondeVirtuel.getLargeur(), this.MonMondeVirtuel.getLongueur());
-		this.setLocationRelativeTo(null); 
+		this.setSize(this.MonMondeVirtuel.getLargeur()+40, this.MonMondeVirtuel.getLongueur()+60);
+		this.setLocation(800,200); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/*On prévient notre JFrame que notre JPanel

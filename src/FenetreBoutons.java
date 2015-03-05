@@ -15,8 +15,8 @@ import java.util.Random;
 
 public class FenetreBoutons extends JFrame implements ActionListener {
 
-	//on lie la classe constante qui sert à régler les différents paramètres
-	private constante c;
+	//on lie la classe GlobalVars qui sert à régler les différents paramètres
+	private GlobalVars c;
 	
 	private Color maCouleur;
 	private PanneauBouton pan; 
@@ -85,13 +85,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 	JTextField TqteNourriture;
 
-	public FenetreBoutons(MondeVirtuel unMonde){
+	public FenetreBoutons(MondeVirtuel unMonde, GlobalVars ca){
+		this.c = ca;
 		this.MonMondeVirtuel = unMonde;
 		this.pan = new PanneauBouton(this, unMonde);
 		this.setTitle("Interface boutons");
 		this.setSize(500,520);
 		//this.setLocationRelativeTo(null); 
-		this.setLocation(1000,400);
+		this.setLocation(300,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*On prévient notre JFrame que notre JPanel

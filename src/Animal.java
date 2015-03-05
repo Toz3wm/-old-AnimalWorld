@@ -5,7 +5,7 @@ import java.io.Serializable ;
 public class Animal implements Serializable  {
 
 
-	private constante c;
+	private GlobalVars c;
 	//l'int orientation désigne l'orientation de l'animal dans l'espace
 	//0 désigne le nord, 1 le nord-est, 2 l'est... jusqu'à 7 le nord-ouest
 	private String name;
@@ -38,33 +38,33 @@ public class Animal implements Serializable  {
 			int orientationa, 
 			MondeVirtuel leMonde, 
 			String namea,
-			constante c) {
+			GlobalVars ca) {
 		super();
-		this.c = c;
+		this.c = ca;
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
-		this.position = new int[2];
-		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
-		position[1] =(int)(Math.random()*leMonde.getLongueur());
+		this.position = new int[c.NB_COORDONNEES];
+		position[c.X] = (int)(Math.random()*leMonde.getLargeur()) ;
+		position[c.Y] =(int)(Math.random()*leMonde.getLongueur());
 		leMonde.animalCree(position, this);
 
-		this.deplacementAbsolu = new int[8][2];
-		this.deplacementAbsolu[c.NORD][0] = -1 ;
-		this.deplacementAbsolu[c.NORDEST][0] = -1 ;
-		this.deplacementAbsolu[c.EST][0] = 0  ;
-		this.deplacementAbsolu[c.SUDEST][0] = 1  ;
-		this.deplacementAbsolu[c.SUD][0] = 1  ;
-		this.deplacementAbsolu[c.SUDOUEST][0] = 1  ;
-		this.deplacementAbsolu[c.OUEST][0] = 0  ;
-		this.deplacementAbsolu[c.NORDOUEST][0] = -1 ;
-		this.deplacementAbsolu[c.NORD][1] = 0  ;
-		this.deplacementAbsolu[c.NORDEST][1] = 1  ; 
-		this.deplacementAbsolu[c.EST][1] = 1  ;
-		this.deplacementAbsolu[c.SUDEST][1] = 1  ; 
-		this.deplacementAbsolu[c.SUD][1] = 0  ;
-		this.deplacementAbsolu[c.SUDOUEST][1] = -1 ;
-		this.deplacementAbsolu[c.OUEST][1] = -1 ;
-		this.deplacementAbsolu[c.NORDOUEST][1] = -1 ;
+		this.deplacementAbsolu = new int[c.NB_DIRECTIONS][c.NB_COORDONNEES];
+		this.deplacementAbsolu[c.NORD][c.X]      = -1 ;
+		this.deplacementAbsolu[c.NORDEST][c.X]   = -1 ;
+		this.deplacementAbsolu[c.EST][c.X]       = 0  ;
+		this.deplacementAbsolu[c.SUDEST][c.X]    = 1  ;
+		this.deplacementAbsolu[c.SUD][c.X]       = 1  ;
+		this.deplacementAbsolu[c.SUDOUEST][c.X]  = 1  ;
+		this.deplacementAbsolu[c.OUEST][c.X]     = 0  ;
+		this.deplacementAbsolu[c.NORDOUEST][c.X] = -1 ;
+		this.deplacementAbsolu[c.NORD][c.Y]      = 0  ;
+		this.deplacementAbsolu[c.NORDEST][c.Y]   = 1  ; 
+		this.deplacementAbsolu[c.EST][c.Y]       = 1  ;
+		this.deplacementAbsolu[c.SUDEST][c.Y]    = 1  ; 
+		this.deplacementAbsolu[c.SUD][c.Y]       = 0  ;
+		this.deplacementAbsolu[c.SUDOUEST][c.Y]  = -1 ;
+		this.deplacementAbsolu[c.OUEST][c.Y]     = -1 ;
+		this.deplacementAbsolu[c.NORDOUEST][c.Y] = -1 ;
 
 		this.orientation = orientationa;
 		this.pbaAvant = pbaAvanta;
@@ -76,10 +76,10 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public Animal(int estomaca, MondeVirtuel leMonde, String namea, constante c ) {
+	public Animal(int estomaca, MondeVirtuel leMonde, String namea, GlobalVars ca ) {
 		super();
 		
-		this.c = c;
+		this.c = ca;
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
@@ -158,15 +158,15 @@ public class Animal implements Serializable  {
 		//mise à jour des coordonnées x et y
 		
 		//on gère le cas du modulo négatif, en rajoutant la largeur si c'est négatif
-		if (position[0]>=0){
-		position[0] =( position[0] + deplacementAbsolu[deplacement][0])%leMonde.getLargeur();}
+		if (position[c.X]>=0){
+		position[c.X] =( position[c.X] + deplacementAbsolu[deplacement][c.X])%leMonde.getLargeur();}
 		else {
-			position[0] =( position[0] + deplacementAbsolu[deplacement][0] +leMonde.getLargeur())%leMonde.getLargeur();
+			position[c.X] =( position[c.X] + deplacementAbsolu[deplacement][c.X] +leMonde.getLargeur())%leMonde.getLargeur();
 		}
-		if (position[1]>=0){
-			position[1] =( position[1] + deplacementAbsolu[deplacement][1])%leMonde.getLongueur();}
+		if (position[c.Y]>=0){
+			position[c.Y] =( position[c.Y] + deplacementAbsolu[deplacement][c.Y])%leMonde.getLongueur();}
 			else {
-				position[1] =( position[1] + deplacementAbsolu[deplacement][1] +leMonde.getLongueur())%leMonde.getLongueur();
+				position[c.Y] =( position[c.Y] + deplacementAbsolu[deplacement][c.Y] +leMonde.getLongueur())%leMonde.getLongueur();
 			}
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde

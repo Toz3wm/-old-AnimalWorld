@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 
 public class ThreadAnimal extends Thread {
 
-	private constante c;
+	private GlobalVars c;
 	private Animal animal;
 	private MondeVirtuel leMonde;
 
@@ -23,7 +23,7 @@ public class ThreadAnimal extends Thread {
 			int orientationa, 
 			MondeVirtuel unMonde, 
 			String namea,
-			constante c){
+			GlobalVars c){
 		animal  = new Animal( pbaAvanta,
 				pbaAvantGauchea,
 				pbaAvantDroita,
@@ -37,7 +37,7 @@ public class ThreadAnimal extends Thread {
 		leMonde = unMonde;
 	}
 
-	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, constante c){
+	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars c){
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
 	}

@@ -27,11 +27,11 @@ public class PanneauCreationMonde extends JPanel {
 		g.setColor(Color.white);
 	}
 	
-	public void AfficheAnimalCree(Graphics g){
+	/*public void AfficheAnimalCree(Graphics g){
 		Font font = new Font("Courier", Font.BOLD, 20);
 	    g.setFont(font);
 	    g.setColor(Color.RED); 
 	    g.drawString("coucou", 10, 20);
 	}
-
+*/
 }

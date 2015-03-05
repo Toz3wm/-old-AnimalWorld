@@ -18,7 +18,7 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 	private int largeur;
 	private int longueur;
 	MondeVirtuel theWorld;
-	constante c;
+	GlobalVars c;
 	JButton button1;
 
 	JLabel label1;
@@ -28,7 +28,7 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 	JTextField Tlongueur;
 
 
-	public FenetreCreationMonde(constante c){
+	public FenetreCreationMonde(GlobalVars c){
 
 		this.c = c;
 		this.pan = new PanneauCreationMonde(this);
@@ -79,9 +79,10 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		//bouton1 : "créer", on crée le monde et on lance la fenetre de choix d'option de création de l'animal
 		if (f.getSource().equals(button1)){ 	
 			this.theWorld = new MondeVirtuel(largeur,longueur,c);
-			new FenetreBoutons(this.theWorld);
+			new FenetreBoutons(this.theWorld, c);
 
-			pan.AfficheAnimalCree(getGraphics());
+			//pan.AfficheAnimalCree(getGraphics());
+			this.dispose();
 		}
 
 

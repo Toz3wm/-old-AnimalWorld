@@ -5,7 +5,7 @@ public class Main {
 	
 public static void main(String[] args){
 	
-	constante c = new constante();
+	GlobalVars c = new GlobalVars();
 	//création du monde
 		/*MondeVirtuel theWorld = new MondeVirtuel(100,100);
 		//création des animaux
@@ -24,7 +24,7 @@ public static void main(String[] args){
 		int[] p2={20,20};
 		new Nourriture(p2, theWorld);*/
 		
-		
+		System.out.println(c.AVANT );
 		//FenetreResultat fen = new FenetreResultat();
 		new FenetreCreationMonde(c);
 		
