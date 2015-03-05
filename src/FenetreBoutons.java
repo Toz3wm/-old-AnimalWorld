@@ -17,7 +17,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 	//on lie la classe GlobalVars qui sert à régler les différents paramètres
 	private GlobalVars c;
-	
+
 	private Color maCouleur;
 	private PanneauBouton pan; 
 	MondeVirtuel MonMondeVirtuel;
@@ -43,7 +43,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	JButton button3;
 	JButton button4;
 	JButton button5;
-	
+
 	JLabel label1;
 	JLabel label2;
 	JLabel label3;
@@ -60,13 +60,13 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	JLabel label8bis;
 	JLabel label9bis;
 	JLabel labelokbis;
-	
+
 	JLabel label10;
 	JLabel labelcharger;
 
 	JLabel label11;
 	JLabel labelajouter;
-	
+
 	JTextField TpbaAvant;
 	JTextField TpbaAvantGauche;
 	JTextField TpbaAvantDroit;
@@ -94,7 +94,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		//this.setLocationRelativeTo(null); 
 		this.setLocation(300,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		/*On prévient notre JFrame que notre JPanel
     sera son content pane  c'est dans celui-ci que nous placerons nos composant */
 		this.setContentPane(pan);
@@ -102,11 +102,11 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 		//Container contentPane = this.getContentPane();
 		//contentPane.setLayout(new GridLayout(8,1)); //disposition grille
-		
+
 		//definition nb lignes et colonnes et espace entre lignes et colonnes
-	    //nb lignes, colonnes, pixels entre chaque ligne, pixel entre chaque colonne
-	    GridLayout gl = new GridLayout(	18, 2, 5, 5);
-	    this.setLayout(gl);
+		//nb lignes, colonnes, pixels entre chaque ligne, pixel entre chaque colonne
+		GridLayout gl = new GridLayout(	18, 2, 5, 5);
+		this.setLayout(gl);
 
 		//pour le premier constructeur personnalisé
 		label1= new JLabel("Pba avant %");
@@ -154,8 +154,8 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 
 		//ajout nourriture
-		label11= new JLabel("Quantité à créer");
-		labelajouter= new JLabel("CLIQUER POUR AJOUTER");
+		label11= new JLabel("Quantité de nourriture à créer");
+		labelajouter= new JLabel("CLIQUER POUR AJOUTER LA NOURRITURE");
 		TqteNourriture =new JTextField("10");
 		button4 = new JButton ("ajouter");
 
@@ -163,8 +163,8 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		button2.addActionListener(this);
 		button3.addActionListener(this);
 		button4.addActionListener(this);
-		
-		
+
+
 		//on ajoute les différents éléments au panneau, dans l'ordre
 		//1er constructeur
 		//on attribue la couleur bleue
@@ -189,7 +189,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		pan.add(label9);pan.add(Tquantité);
 
 		pan.add(labelok);pan.add(button1);
-		
+
 
 
 		//2e constructeur
@@ -199,7 +199,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		label9bis.setForeground(new Color(204,0,102));
 		pan.add(label6bis);pan.add(estomacInitialbis);
 		pan.add(label7bis);pan.add(nomAnimalbis);
-		
+
 		pan.add(label9bis);pan.add(Tquantitébis);
 
 		pan.add(labelokbis);pan.add(button2);
@@ -302,7 +302,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 		//bouton2 : "ok" on créé l'animal aléatoire
 		if (e.getSource().equals(button2)){ 
-			
+
 			//on récupère les données entrées		
 			//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
 
@@ -310,7 +310,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			//orientationbis =Integer.parseInt(Torientationbis.getText());
 			namebis = (nomAnimalbis.getText());
 			quantitebis = Integer.parseInt(Tquantitébis.getText());
-			
+
 			//on attribue une couleur aléatoire
 			Random rand = new Random();
 			// Java 'Color' class takes 3 floats, from 0 to 1.
@@ -326,7 +326,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						estomacbis,
 						this.getMonMondeVirtuel(), 
 						namebis,
-						c);
+						this.getMonMondeVirtuel().getConstante());
 				//on attribue à l'animal créé la couleur courante
 				threadtest.getAnimal().setMaCouleur(maCouleur);
 
@@ -346,7 +346,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			threadtest.getAnimal().setMaCouleur(maCouleur);
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
-			threadtest.saveAnimal("titi.txt");
+			threadtest.saveAnimal(name + ".txt");
 			System.out.println(threadtest.getAnimal().getName());
 			threadtest.run();
 			MonMondeVirtuel.getFenetreDuMonde().go();
@@ -354,7 +354,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 		//bouton3: charger un profil
 		if (e.getSource().equals(button3)){ 
-			
+
 			fileName = TfileName.getText();
 			//on attribue une couleur aléatoire
 			Random rand = new Random();
@@ -364,7 +364,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			float b = rand.nextFloat();
 			maCouleur= new Color(r, g, b);
 
-			ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel());
+			ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
 			//on attribue à l'animal créé la couleur courante
 			threadtest.getAnimal().setMaCouleur(maCouleur);
 		}
@@ -376,7 +376,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			for(int i=0;i<Integer.parseInt(TqteNourriture.getText())-1;i++){
 				int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLargeur())};
 				new Nourriture(p, MonMondeVirtuel);
-
+				this.MonMondeVirtuel.getFenetreDuMonde().go();
 			}
 		}
 	}

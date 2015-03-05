@@ -23,7 +23,7 @@ public class ThreadAnimal extends Thread {
 			int orientationa, 
 			MondeVirtuel unMonde, 
 			String namea,
-			GlobalVars c){
+			GlobalVars ca){
 		animal  = new Animal( pbaAvanta,
 				pbaAvantGauchea,
 				pbaAvantDroita,
@@ -32,19 +32,24 @@ public class ThreadAnimal extends Thread {
 				estomaca,
 				orientationa,
 				unMonde,
-				namea, 
-				c);
+				namea,
+				unMonde.getConstante());
 		leMonde = unMonde;
+		this.c = ca;
 	}
 
-	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars c){
+	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars ca){
+		c = ca;
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
+		
 	}
 
-	ThreadAnimal(String fileName, MondeVirtuel unMonde){
+	ThreadAnimal(String fileName, MondeVirtuel unMonde, GlobalVars ca){
 		leMonde = unMonde;
+		c = ca;
 		animal = loadAnimal(fileName);
+		
 	}
 
 	//méthode pour sauvegarder le profil d'un animal
@@ -101,7 +106,7 @@ public class ThreadAnimal extends Thread {
 
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
-			animal.bouger(leMonde);
+			animal.bouger(leMonde, c);
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
@@ -110,6 +115,8 @@ public class ThreadAnimal extends Thread {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
+			
+			this.leMonde.getFenetreDuMonde().go();
 		}
 	}
 

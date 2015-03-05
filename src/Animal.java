@@ -5,13 +5,10 @@ import java.io.Serializable ;
 public class Animal implements Serializable  {
 
 
-	private GlobalVars c;
 	//l'int orientation désigne l'orientation de l'animal dans l'espace
 	//0 désigne le nord, 1 le nord-est, 2 l'est... jusqu'à 7 le nord-ouest
 	private String name;
 	private int orientation;
-	//table des déplacements absolus
-	private final int[][] deplacementAbsolu;
 
 	private int[] position;
 
@@ -38,9 +35,9 @@ public class Animal implements Serializable  {
 			int orientationa, 
 			MondeVirtuel leMonde, 
 			String namea,
-			GlobalVars ca) {
+			GlobalVars c) {
 		super();
-		this.c = ca;
+		
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[c.NB_COORDONNEES];
@@ -48,6 +45,7 @@ public class Animal implements Serializable  {
 		position[c.Y] =(int)(Math.random()*leMonde.getLongueur());
 		leMonde.animalCree(position, this);
 
+		/*
 		this.deplacementAbsolu = new int[c.NB_DIRECTIONS][c.NB_COORDONNEES];
 		this.deplacementAbsolu[c.NORD][c.X]      = -1 ;
 		this.deplacementAbsolu[c.NORDEST][c.X]   = -1 ;
@@ -64,7 +62,7 @@ public class Animal implements Serializable  {
 		this.deplacementAbsolu[c.SUD][c.Y]       = 0  ;
 		this.deplacementAbsolu[c.SUDOUEST][c.Y]  = -1 ;
 		this.deplacementAbsolu[c.OUEST][c.Y]     = -1 ;
-		this.deplacementAbsolu[c.NORDOUEST][c.Y] = -1 ;
+		this.deplacementAbsolu[c.NORDOUEST][c.Y] = -1 ; */
 
 		this.orientation = orientationa;
 		this.pbaAvant = pbaAvanta;
@@ -76,37 +74,17 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public Animal(int estomaca, MondeVirtuel leMonde, String namea, GlobalVars ca ) {
+	public Animal(int estomaca, MondeVirtuel leMonde, String namea, GlobalVars c) {
 		super();
 		
-		this.c = ca;
 		this.name = namea;
 		//l'animal apparait sur une case aléatoire
 		this.position = new int[2];
-		position[0] = (int)(Math.random()*leMonde.getLargeur()) ;
-		position[1] =(int)(Math.random()*leMonde.getLongueur());
+		position[c.X] = (int)(Math.random()*leMonde.getLargeur()) ;
+		position[c.Y] =(int)(Math.random()*leMonde.getLongueur());
 		leMonde.animalCree(position,this);
 
-		this.deplacementAbsolu = new int[8][2];
-		//déplacement absolu pour les abscisses x
-		this.deplacementAbsolu[0][0] = -1 ;
-		this.deplacementAbsolu[1][0] = -1 ;
-		this.deplacementAbsolu[2][0] = 0 ;
-		this.deplacementAbsolu[3][0] = 1 ;
-		this.deplacementAbsolu[4][0] = 1 ;
-		this.deplacementAbsolu[5][0] = 1 ;
-		this.deplacementAbsolu[6][0] = 0 ;
-		this.deplacementAbsolu[7][0] = -1 ;
-		// déplacement absolu pour les ordonnées y
-		this.deplacementAbsolu[0][1] = 0 ;
-		this.deplacementAbsolu[1][1] = 1 ;
-		this.deplacementAbsolu[2][1] = 1 ;
-		this.deplacementAbsolu[3][1] = 1 ;
-		this.deplacementAbsolu[4][1] = 0 ;
-		this.deplacementAbsolu[5][1] = -1 ;
-		this.deplacementAbsolu[6][1] = -1 ;
-		this.deplacementAbsolu[7][1] = -1 ;
-
+	
 		this.orientation = (int) (8*Math.random());
 		
 		
@@ -126,7 +104,7 @@ public class Animal implements Serializable  {
 		this.score = 0;
 	}
 
-	public void bouger(MondeVirtuel leMonde){
+	public void bouger(MondeVirtuel leMonde, GlobalVars c){
 		double choix = Math.random();
 		int deplacement;
 		estomac--;
@@ -159,23 +137,23 @@ public class Animal implements Serializable  {
 		
 		//on gère le cas du modulo négatif, en rajoutant la largeur si c'est négatif
 		if (position[c.X]>=0){
-		position[c.X] =( position[c.X] + deplacementAbsolu[deplacement][c.X])%leMonde.getLargeur();}
+		position[c.X] =( position[c.X] + c.deplacementAbsolu[deplacement][c.X]+ leMonde.getLargeur())%leMonde.getLargeur();}
 		else {
-			position[c.X] =( position[c.X] + deplacementAbsolu[deplacement][c.X] +leMonde.getLargeur())%leMonde.getLargeur();
+			position[c.X] =( position[c.X] + c.deplacementAbsolu[deplacement][c.X] +leMonde.getLargeur())%leMonde.getLargeur();
 		}
 		if (position[c.Y]>=0){
-			position[c.Y] =( position[c.Y] + deplacementAbsolu[deplacement][c.Y])%leMonde.getLongueur();}
+			position[c.Y] =( position[c.Y] + c.deplacementAbsolu[deplacement][c.Y]+leMonde.getLongueur())%leMonde.getLongueur();}
 			else {
-				position[c.Y] =( position[c.Y] + deplacementAbsolu[deplacement][c.Y] +leMonde.getLongueur())%leMonde.getLongueur();
+				position[c.Y] =( position[c.Y] + c.deplacementAbsolu[deplacement][c.Y] +leMonde.getLongueur())%leMonde.getLongueur();
 			}
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
 		leMonde.mouvementAnimal(anciennePosition, position);
 	}
 
-	public void mange(MondeVirtuel leMonde){
+	public void mange(MondeVirtuel leMonde, GlobalVars c){
 		//si il y a de la nourriture disponible, il mange
-		if (leMonde.contenu(this.position[0],this.position[1])[0]!=0){
+		if (leMonde.contenu(this.position[c.X],this.position[c.Y])[c.QTE_NOURRITURE]!=0){
 			leMonde.nourritureMangee(this.position);}
 		//il faut mettre à jour l'estomac et le score
 		estomac++;

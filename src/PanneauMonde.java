@@ -48,7 +48,7 @@ public class PanneauMonde extends JPanel {
 				g.setColor(maCouleur);
 				//On le dessine aux coordonnées souhaitées
 				//attention à tenir compte du centre du cercle comme coordonnée
-				g.fillOval(10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0],10+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 10, 10);
+				g.fillOval(5+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[0],5+this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().get(i).getPosition()[1], 10, 10);
 			}
 
 			/*il faux dessiner toute la nourriture du monde, en parcourant toutes les cases de la matrice*/

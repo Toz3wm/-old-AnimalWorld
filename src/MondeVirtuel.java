@@ -22,7 +22,7 @@ public class MondeVirtuel {
 		this.FenetreDuMonde = new FenetreMonde(this,c);
 		this.leMondeEstVide = true;
 		//this.LaFenetreBoutons = new FenetreBoutons(this);
-		
+
 		this.matrice = new int[largeur][longueur][2];
 		for (int i = 0; i < largeur; i++){
 			for(int j = 0; j < longueur; j++){
@@ -36,11 +36,11 @@ public class MondeVirtuel {
 	public int getLargeur() {
 		return largeur;
 	}
-	
+
 	public int getLongueur() {
 		return longueur;
 	}
-	
+
 	public int[] contenu(int x, int y){
 		return matrice[x][y];
 	}
@@ -55,14 +55,14 @@ public class MondeVirtuel {
 		matrice[position[0]][position[1]][1]++;
 		this.VecteurAnimaux.add(unAnimal);
 		this.leMondeEstVide = false;
-		
+
 	}
-	
+
 	public void nourritureCree(int[] position) {
 
 		matrice[position[0]][position[1]][0]++;
 	}
-	
+
 	public void nourritureMangee(int[] position) {
 		matrice[position[0]][position[1]][0]--;
 	}
@@ -95,5 +95,13 @@ public class MondeVirtuel {
 		CouleurCourante = couleurCourante;
 	}
 
+	public GlobalVars getConstante() {
+		return c;
+	}
 	
+	public FenetreMonde getFenetreMonde() {
+		return this.FenetreDuMonde;
+	}
+
+
 }

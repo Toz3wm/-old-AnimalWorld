@@ -38,6 +38,7 @@ public class FenetreMonde extends JFrame {
 
 		//On redessine notre Panneau
 		MonPan.repaint();
+		MonPan.revalidate();
 		System.out.println("go");
 
 	}
