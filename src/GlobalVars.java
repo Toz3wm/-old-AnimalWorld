@@ -43,23 +43,23 @@ public final int[][] deplacementAbsolu;
 GlobalVars() {
 	this.deplacementAbsolu = new int[8][2];
 	//déplacement absolu pour les abscisses x
-	this.deplacementAbsolu[0][0] = -1 ;
-	this.deplacementAbsolu[1][0] = -1 ;
-	this.deplacementAbsolu[2][0] = 0 ;
-	this.deplacementAbsolu[3][0] = 1 ;
-	this.deplacementAbsolu[4][0] = 1 ;
-	this.deplacementAbsolu[5][0] = 1 ;
-	this.deplacementAbsolu[6][0] = 0 ;
-	this.deplacementAbsolu[7][0] = -1 ;
-	// déplacement absolu pour les ordonnées y
-	this.deplacementAbsolu[0][1] = 0 ;
-	this.deplacementAbsolu[1][1] = 1 ;
-	this.deplacementAbsolu[2][1] = 1 ;
+	this.deplacementAbsolu[0][1] = -1 ;
+	this.deplacementAbsolu[1][1] = -1 ;
+	this.deplacementAbsolu[2][1] = 0 ;
 	this.deplacementAbsolu[3][1] = 1 ;
-	this.deplacementAbsolu[4][1] = 0 ;
-	this.deplacementAbsolu[5][1] = -1 ;
-	this.deplacementAbsolu[6][1] = -1 ;
+	this.deplacementAbsolu[4][1] = 1 ;
+	this.deplacementAbsolu[5][1] = 1 ;
+	this.deplacementAbsolu[6][1] = 0 ;
 	this.deplacementAbsolu[7][1] = -1 ;
+	// déplacement absolu pour les ordonnées y
+	this.deplacementAbsolu[0][0] = 0 ;
+	this.deplacementAbsolu[1][0] = 1 ;
+	this.deplacementAbsolu[2][0] = 1 ;
+	this.deplacementAbsolu[3][0] = 1 ;
+	this.deplacementAbsolu[4][0] = 0 ;
+	this.deplacementAbsolu[5][0] = -1 ;
+	this.deplacementAbsolu[6][0] = -1 ;
+	this.deplacementAbsolu[7][0] = -1 ;
 
 }
 

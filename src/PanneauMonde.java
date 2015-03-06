@@ -40,7 +40,7 @@ public class PanneauMonde extends JPanel {
 	qu'on a créé dans la classe MondeVirtuel*/
 
 		/*if (this.MaFenetreAssociee.getMonMondeVirtuel().isLeMondeEstVide() == false)*/
-			for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().size();i++){
+		/*	for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getVecteurAnimaux().size();i++){
 
 				//On redéfinit une couleur pour le rond
 				//on récupère l'info de la couleur courante
@@ -60,16 +60,17 @@ public class PanneauMonde extends JPanel {
 				//on parcourt les ordonnées, verticalement
 				// y = j
 				for (int j=0;j<this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur()-1;j++){
-
 					//On redéfinit une couleur pour le rectangle
 					g.setColor(Color.blue);
+					
+				
+					//on vérifie si il y a des animaux
+					if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1] !=0 ){
 
-					//on vérifie si il y a de la nourriture
-					if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
-
-						//on redessine le rectangle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
-						for (int m=1;m<=this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];){
-							g.fillRect(2+i, 2+j, 5, 5);
+						//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
+						for (int m=1;m<=this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1];){
+							g.setColor(Color.red);
+							g.fillOval(5+i, 5+j, 10, 10);
 							
 							int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
 							System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
@@ -79,6 +80,21 @@ public class PanneauMonde extends JPanel {
 						{System.out.println("rien");}
 							
 						}
+					
+					//on vérifie si il y a de la nourriture
+					if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
+						//on redessine le rectangle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
+						for (int m=1;m<=this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];){
+							g.fillRect(10+i, 10+j, 1, 1);
+							//int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
+							//System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
+							m++;
+						}
+						if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] ==0 ){
+							System.out.println("rien");}
+						}
+					
+					
 					}
 				}
 			}

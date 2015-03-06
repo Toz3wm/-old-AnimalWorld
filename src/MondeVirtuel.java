@@ -48,6 +48,7 @@ public class MondeVirtuel {
 	public void mouvementAnimal(int[] anciennePosition, int[] nouvellePosition) {
 		matrice[anciennePosition[0]][anciennePosition[1]][1]--;
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
+		System.out.println("un animal a bougé!");
 		this.FenetreDuMonde.go();
 	}
 

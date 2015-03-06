@@ -109,13 +109,13 @@ public class ThreadAnimal extends Thread {
 			animal.bouger(leMonde, c);
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 			int duree = (int) (Math.random()*1000);
-			//dort pendant un tant aléatoire
+		/*	//dort pendant un tant aléatoire
 			try {
 				sleep(100);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			
+			*/
 			this.leMonde.getFenetreDuMonde().go();
 		}
 	}
