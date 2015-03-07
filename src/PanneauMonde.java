@@ -13,29 +13,29 @@ import java.awt.Graphics2D;
 
 public class PanneauMonde extends JPanel { 
 
-	private Color maCouleur;
+	//private Color maCouleur;
 	private FenetreMonde MaFenetreAssociee;
-	private Vector<Animal> VecteurAnimaux; 
+	//private Vector<Animal> VecteurAnimaux; 
 	//On simplifie l'écriture pour appeler le vecteur d'animaux
 
 
 	public PanneauMonde(FenetreMonde maFenetreAssociee, MondeVirtuel unMonde) {
 		super();
 		MaFenetreAssociee = maFenetreAssociee;
-		VecteurAnimaux =  unMonde.getVecteurAnimaux();
+		//VecteurAnimaux =  unMonde.getVecteurAnimaux();
 
 	}
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
 	public void paintComponent(Graphics g){
-
+		//System.out.println("on a bien fait un repaint du monde!");
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 		g.setColor(Color.white);
 		//On le dessine de sorte qu'il occupe toute la surface
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.black);
 		g.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
-
+		//System.out.println("on a bien fait un repaint du monde!");
 		/*il faux dessiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
 	qu'on a créé dans la classe MondeVirtuel*/
 
@@ -53,53 +53,68 @@ public class PanneauMonde extends JPanel {
 
 			/*il faux dessiner toute la nourriture du monde, en parcourant toutes les cases de la matrice*/
 
-			//on parcourt les abscisses horizontalement
-			// x = i
-			for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur()-1;i++){
+		//on parcourt les abscisses horizontalement
+		// x = i
+		for (int i=0;i<this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur()-1;i++){
 
-				//on parcourt les ordonnées, verticalement
-				// y = j
-				for (int j=0;j<this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur()-1;j++){
-					//On redéfinit une couleur pour le rectangle
-					g.setColor(Color.blue);
-					
-				
-					//on vérifie si il y a des animaux
-					if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1] !=0 ){
+			//on parcourt les ordonnées, verticalement
+			// y = j
+			for (int j=0;j<this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur()-1;j++){
 
-						//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
-						for (int m=1;m<=this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1];){
-							g.setColor(Color.red);
-							g.fillOval(5+i, 5+j, 10, 10);
-							
-							int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
-							System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
-							m++;
-						}
-						if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] ==0 ) 
-						{System.out.println("rien");}
-							
-						}
-					
-					//on vérifie si il y a de la nourriture
-					if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
-						//on redessine le rectangle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
-						for (int m=1;m<=this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];){
-							g.fillRect(10+i, 10+j, 1, 1);
-							//int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
-							//System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
-							m++;
-						}
-						if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] ==0 ){
-							System.out.println("rien");}
-						}
-					
-					
-					}
+
+
+				//on vérifie si il y a des animaux
+				if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1] !=0 ){
+					g.setColor(Color.red);
+					//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
+
+					g.fillOval(5+i, 5+j, 10, 10);
+
+					//int nbAnimaux = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1];
+					//System.out.println("nombre d'animaux en" +"("+i+","+j+")"+"="  + nbAnimaux);
+
+
 				}
-			}
-		
 
+				//On redéfinit une couleur pour le rectangle
+				g.setColor(Color.blue);
+				//on vérifie si il y a de la nourriture
+				if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
+						g.fillRect(10+i, 10+j, 1, 1);
+						//int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
+						//System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
+						
+				/*	if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] ==0 ){
+						System.out.println("rien");
+						}*/
+				}
+
+
+			}
+			
+		}
+		this.MaFenetreAssociee.semtest.release();
+	}
+
+
+	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
+		 Graphics g = this.getGraphics();
+		 g.setColor(Color.white);
+		 g.fillRect(anciennePosition[0], anciennePosition[1], 2, 2);
+		 g.setColor(Color.red);
+		 g.fillRect(nouvellePosition[0], nouvellePosition[1], 2, 2);
+		this.MaFenetreAssociee.semtest.release();
+		}
+	
+	public void paintNourriture(int[] position){
+		 Graphics g = this.getGraphics();
+		 g.setColor(Color.blue);
+		 g.fillRect(position[0], position[1], 2, 2);
+		this.MaFenetreAssociee.semtest.release();
+		}
+	
+	
+	
 	public FenetreMonde getMaFenetreAssociee() {
 		return MaFenetreAssociee;
 	}

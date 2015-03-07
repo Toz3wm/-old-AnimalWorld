@@ -373,11 +373,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		if (e.getSource().equals(button4)){ 
 
 			//on lance la création plusieurs fois
-			for(int i=0;i<Integer.parseInt(TqteNourriture.getText())-1;i++){
-				int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLargeur())};
+			for(int i=0;i<Integer.parseInt(TqteNourriture.getText())-2;i++){
+				int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLongueur())};
 				new Nourriture(p, MonMondeVirtuel);
-				this.MonMondeVirtuel.getFenetreDuMonde().go();
+				
 			}
+			int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLongueur())};
+			new Nourriture(p, MonMondeVirtuel);
+			this.MonMondeVirtuel.getFenetreDuMonde().go();
 		}
 	}
 

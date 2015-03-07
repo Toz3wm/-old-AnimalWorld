@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.concurrent.Semaphore;
 
 
 public class ThreadAnimal extends Thread {
@@ -13,6 +14,7 @@ public class ThreadAnimal extends Thread {
 	private GlobalVars c;
 	private Animal animal;
 	private MondeVirtuel leMonde;
+	private Semaphore semtest;
 
 	ThreadAnimal(double pbaAvanta,
 			double pbaAvantGauchea, 
@@ -36,12 +38,14 @@ public class ThreadAnimal extends Thread {
 				unMonde.getConstante());
 		leMonde = unMonde;
 		this.c = ca;
-	}
+		this.leMonde.updateVectThreadAnimal(this);
+		}
 
 	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars ca){
 		c = ca;
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
+		this.leMonde.updateVectThreadAnimal(this);
 		
 	}
 
@@ -49,7 +53,7 @@ public class ThreadAnimal extends Thread {
 		leMonde = unMonde;
 		c = ca;
 		animal = loadAnimal(fileName);
-		
+		this.leMonde.updateVectThreadAnimal(this);
 	}
 
 	//méthode pour sauvegarder le profil d'un animal
@@ -103,20 +107,25 @@ public class ThreadAnimal extends Thread {
 	}
 
 	public void run(){
-
+semtest = new Semaphore(1);
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
 			animal.bouger(leMonde, c);
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 			int duree = (int) (Math.random()*1000);
-		/*	//dort pendant un tant aléatoire
+			//dort pendant un tant aléatoire
+			 
 			try {
-				sleep(100);
+				sleep(50);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			*/
-			this.leMonde.getFenetreDuMonde().go();
+			/**/
+			try {
+				this.leMonde.getFenetreDuMonde().semtest.acquire();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

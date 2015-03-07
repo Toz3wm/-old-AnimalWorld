@@ -1,14 +1,15 @@
 
-import java.awt.Color; 
-import java.util.Vector;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class FenetreMonde extends JFrame {
 	private GlobalVars c;
 	private PanneauMonde MonPan; 
 	MondeVirtuel MonMondeVirtuel;
+	public Semaphore semtest;
 
 	public FenetreMonde(MondeVirtuel unMonde, GlobalVars c){
 		this.c = c;
@@ -18,6 +19,7 @@ public class FenetreMonde extends JFrame {
 		this.setSize(this.MonMondeVirtuel.getLargeur()+40, this.MonMondeVirtuel.getLongueur()+60);
 		this.setLocation(800,200); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.semtest = new Semaphore(1);
 
 		/*On prévient notre JFrame que notre JPanel
     sera son content pane  c'est dans celui-ci que nous placerons nos composant */
@@ -37,11 +39,18 @@ public class FenetreMonde extends JFrame {
 	public void go(){ 
 
 		//On redessine notre Panneau
-		MonPan.repaint();
-		MonPan.revalidate();
-		System.out.println("go");
-
+		MonPan.paint(MonPan.getGraphics());
+	//	System.out.println("go");
 	}
+	
+	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
+		MonPan.paintAnimal(anciennePosition, nouvellePosition);
+	}
+	
+	public void paintNourriture(int[] position){
+		MonPan.paintNourriture(position);
+	}
+	
 }    
 
 

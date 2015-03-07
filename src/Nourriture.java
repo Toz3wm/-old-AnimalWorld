@@ -12,6 +12,7 @@ public class Nourriture {
 		this.leMonde = unMonde;
 		this.position=position;
 		this.leMonde.nourritureCree(position);
+		this.leMonde.nbNourriture(1);
 		//commmit fin des vacances
 	}
 

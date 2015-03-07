@@ -12,7 +12,9 @@ public class MondeVirtuel {
 	private Vector<Animal> VecteurAnimaux;
 	private FenetreMonde FenetreDuMonde;
 	private boolean leMondeEstVide;
+	private int nbNourriture;
 	//private FenetreBoutons LaFenetreBoutons;
+	private Vector<ThreadAnimal> vectThreadAnimal;
 
 	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
 		this.c = c;
@@ -48,8 +50,8 @@ public class MondeVirtuel {
 	public void mouvementAnimal(int[] anciennePosition, int[] nouvellePosition) {
 		matrice[anciennePosition[0]][anciennePosition[1]][1]--;
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
-		System.out.println("un animal a bougé!");
-		this.FenetreDuMonde.go();
+		//System.out.println("un animal a bougé!");
+		this.FenetreDuMonde.paintAnimal(anciennePosition, nouvellePosition);
 	}
 
 	public void animalCree(int[] position, Animal unAnimal) {
@@ -66,6 +68,7 @@ public class MondeVirtuel {
 
 	public void nourritureMangee(int[] position) {
 		matrice[position[0]][position[1]][0]--;
+		nbNourriture--;
 	}
 
 	public Vector<Animal> getVecteurAnimaux() {
@@ -99,10 +102,17 @@ public class MondeVirtuel {
 	public GlobalVars getConstante() {
 		return c;
 	}
-	
+
 	public FenetreMonde getFenetreMonde() {
 		return this.FenetreDuMonde;
 	}
 
+	public void nbNourriture(int a){
+		nbNourriture += a;
+	}
 
+	public void updateVectThreadAnimal(ThreadAnimal a){
+		this.vectThreadAnimal.add(a);
+	}
+	
 }
