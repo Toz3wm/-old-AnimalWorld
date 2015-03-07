@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -32,6 +33,15 @@ public class MondeVirtuel {
 					matrice[i][j][k] = 0;
 				}
 			}
+		}
+	}
+	
+	public void backUp(){
+		Iterator<ThreadAnimal> it = vectThreadAnimal.iterator();
+		ThreadAnimal t;
+		while (it.hasNext()) {
+			t= it.next();
+			t.saveAnimal(t.getAnimal().getName());
 		}
 	}
 
