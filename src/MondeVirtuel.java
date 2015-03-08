@@ -134,42 +134,43 @@ public class MondeVirtuel {
 
 	public void updateScore(ThreadAnimal threadAnimal) {
 		Animal ani = threadAnimal.getAnimal();
+// ATTENTION : CETTE METHODE PEUT CONDUIRE A UN TABLEAU REMPLI CINQ FOIS DU MEME ANIMAL S'IL N Y A QU'UN ANIMAL VIVANT
+		System.out.println(remplissageMeilleurAnimaux);
 		if (this.remplissageMeilleurAnimaux <= 4){
-			if (this.remplissageMeilleurAnimaux == 0){
+			if ((this.remplissageMeilleurAnimaux == 0) && true){
 				this.meilleursAnimaux[0] = ani;
 				this.remplissageMeilleurAnimaux++;
-			} else if (this.remplissageMeilleurAnimaux == 1){
+			} else if ((this.remplissageMeilleurAnimaux == 1) && (this.meilleursAnimaux[0] != ani)){
 				this.meilleursAnimaux[1] = ani;
 				this.remplissageMeilleurAnimaux++;
-			} else if (this.remplissageMeilleurAnimaux == 2){
+			} else if ((this.remplissageMeilleurAnimaux == 2)  && (this.meilleursAnimaux[0] != ani)  && (this.meilleursAnimaux[1] != ani)){
 				this.meilleursAnimaux[2] = ani;
 				this.remplissageMeilleurAnimaux++;
-			} else if (this.remplissageMeilleurAnimaux == 3){
+			} else if ((this.remplissageMeilleurAnimaux == 3) && (this.meilleursAnimaux[0] != ani)  && (this.meilleursAnimaux[1] != ani) && (this.meilleursAnimaux[2] != ani)){
 				this.meilleursAnimaux[3] = ani;
 				this.remplissageMeilleurAnimaux++;
-			} else if (this.remplissageMeilleurAnimaux == 4){
+			} else if ((this.remplissageMeilleurAnimaux == 4) && (this.meilleursAnimaux[0] != ani)  && (this.meilleursAnimaux[1] != ani) && (this.meilleursAnimaux[2] != ani) && (this.meilleursAnimaux[3] != ani) ){
 				this.meilleursAnimaux[4] = ani;
 				this.remplissageMeilleurAnimaux++;
 			}
 		} else {
-			if (this.meilleursAnimaux[0].getScore() <= ani.getScore()){
+			if ((this.meilleursAnimaux[0].getScore() <= ani.getScore())  && (this.meilleursAnimaux[0] != ani)) {
 				this.meilleursAnimaux[0] = ani;
-				this.FenetreResultat.getPanneau().repaint();
-			} else if (this.meilleursAnimaux[1].getScore() <= ani.getScore()){
+				this.FenetreResultat.paintResult(this.meilleursAnimaux);
+			} else if ((this.meilleursAnimaux[1].getScore() <= ani.getScore())  && (this.meilleursAnimaux[1] != ani)){
 				this.meilleursAnimaux[1] = ani;
-				this.FenetreResultat.getPanneau().repaint();
-			} else if (this.meilleursAnimaux[2].getScore() <= ani.getScore()){
+				this.FenetreResultat.paintResult(this.meilleursAnimaux);
+			} else if ((this.meilleursAnimaux[2].getScore() <= ani.getScore())  && (this.meilleursAnimaux[0] != ani)){
 				this.meilleursAnimaux[2] = ani;
-				this.FenetreResultat.getPanneau().repaint();
-			} else if (this.meilleursAnimaux[3].getScore() <= ani.getScore()){
+				this.FenetreResultat.paintResult(this.meilleursAnimaux);
+			} else if ((this.meilleursAnimaux[3].getScore() <= ani.getScore())  && (this.meilleursAnimaux[0] != ani)){
 				this.meilleursAnimaux[3] = ani;
-				this.FenetreResultat.getPanneau().repaint();
-			} else if (this.meilleursAnimaux[4].getScore() <= ani.getScore()){
+				this.FenetreResultat.paintResult(this.meilleursAnimaux);
+			} else if ((this.meilleursAnimaux[4].getScore() <= ani.getScore()) && (this.meilleursAnimaux[0] != ani)){
 				this.meilleursAnimaux[4] = ani;
-				this.FenetreResultat.getPanneau().repaint();
+				this.FenetreResultat.paintResult(this.meilleursAnimaux);
 			}
-
-
+			
 	}
 
 }

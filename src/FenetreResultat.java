@@ -23,5 +23,13 @@ public class FenetreResultat extends JFrame{
 	public PanneauResultat getPanneau(){
 		return pan;
 	}
+
+	public void paintResult(Animal[] meilleursAnimaux) {
+		for(int i = 0; i < 5; i++){
+			this.pan.paintAnimal(i, meilleursAnimaux[i]);
+			System.out.println(meilleursAnimaux);
+		}
+		
+	}
 	
 }

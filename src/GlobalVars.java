@@ -1,3 +1,5 @@
+import java.util.concurrent.Semaphore;
+
 
 
 //classe comportant toutes les GlobalVarss
@@ -39,8 +41,13 @@ public final int Y = 1;
 
 public final int[][] deplacementAbsolu;
 
+//semaphores
+public Semaphore mutexUpdateScore;
+
 
 GlobalVars() {
+	this.mutexUpdateScore = new Semaphore(1);
+	
 	this.deplacementAbsolu = new int[8][2];
 	//déplacement absolu pour les abscisses x
 	this.deplacementAbsolu[0][1] = -1 ;

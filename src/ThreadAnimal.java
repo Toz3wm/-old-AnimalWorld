@@ -39,14 +39,14 @@ public class ThreadAnimal extends Thread {
 		leMonde = unMonde;
 		this.c = ca;
 		this.leMonde.updateVectThreadAnimal(this);
-		}
+	}
 
 	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars ca){
 		c = ca;
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
 		this.leMonde.updateVectThreadAnimal(this);
-		
+
 	}
 
 	ThreadAnimal(String fileName, MondeVirtuel unMonde, GlobalVars ca){
@@ -107,14 +107,14 @@ public class ThreadAnimal extends Thread {
 	}
 
 	public void run(){
-semtest = new Semaphore(1);
+		semtest = new Semaphore(1);
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
 			animal.bouger(leMonde, c);
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
-			 
+
 			try {
 				sleep(50);
 			} catch (InterruptedException e1) {
@@ -126,12 +126,19 @@ semtest = new Semaphore(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			try {
+				this.c.mutexUpdateScore.acquire();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			this.leMonde.updateScore(this);
+			this.c.mutexUpdateScore.release();
+
 		}
 	}
 
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
 	}
-	
+
 }

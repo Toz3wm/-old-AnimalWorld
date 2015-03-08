@@ -5,9 +5,13 @@ import javax.swing.JPanel;
 
 
 public class PanneauResultat extends JPanel {
+	float tabGris[];
+	
 	
 	PanneauResultat(){
 	  this.setBackground(Color.red);
+	  tabGris = Color.RGBtoHSB(180, 180, 180, new float[3]);
+		
 	}
 
 	public void paintComponent(Graphics g){
@@ -16,18 +20,17 @@ public class PanneauResultat extends JPanel {
 		g.setColor(Color.white);
 		//On redéfinit une couleur pour le rond
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		diagrammePentagone(20, 20, g);
+		/*diagrammePentagone(20, 20, g);
 		diagrammePentagone(160,20, g);
 		diagrammePentagone(300,20, g);
 		diagrammePentagone(90,160, g);
 		diagrammePentagone(240,160, g);
-		pentagone(20,20,g,0.8,0.6,0.4,0.2,0.5);
+		pentagone(20,20,g,0.8,0.6,0.4,0.2,0.5);*/
 	}
-
+	
 	public void diagrammePentagone(int posX, int posY, Graphics g){
-		float[] tab = Color.RGBtoHSB(180, 180, 180, new float[3]);
-		
-		g.setColor(Color.getHSBColor(tab[0],tab[1], tab[2]));
+
+		g.setColor(Color.getHSBColor(tabGris[0],tabGris[1], tabGris[2]));
 		g.drawOval(posX,posY,120,120);
 		g.drawOval(posX+12,posY+12,96,96);
 		g.drawOval(posX+24,posY+24,72,72);
@@ -53,6 +56,11 @@ public class PanneauResultat extends JPanel {
 		}
 		g.setColor(Color.red);
 		g.fillPolygon(tabX, tabY, 5);
+	}
+
+	public void paintAnimal(int i,Animal a) {
+		this.diagrammePentagone(20, 20 + 140*i, getGraphics());
+		this.pentagone(20, 2+140*i, getGraphics(), a.getPbaAvant(), a.getPbaAvantDroit(), a.getPbaArriereDroit(), a.getPbaArriereGauche(), a.getPbaAvantGauche());
 	}
 	
 }

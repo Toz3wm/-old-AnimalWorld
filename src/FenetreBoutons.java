@@ -271,7 +271,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				threadtest.saveAnimal("titi.txt");
 				System.out.println(threadtest.getAnimal().getName());
-				threadtest.run();
+				threadtest.start();
 				MonMondeVirtuel.getFenetreDuMonde().go();}
 
 
@@ -291,7 +291,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			System.out.println(threadtest.getAnimal().getName());
-			threadtest.run();
+			threadtest.start();
 			MonMondeVirtuel.getFenetreDuMonde().go();
 
 			//pan.AfficheAnimalCree(getGraphics());
@@ -332,7 +332,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				System.out.println(threadtest.getAnimal().getName());
-				threadtest.run();
+				threadtest.start();
 				MonMondeVirtuel.getFenetreDuMonde().go();
 			}
 
@@ -348,7 +348,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			threadtest.saveAnimal(name + ".txt");
 			System.out.println(threadtest.getAnimal().getName());
-			threadtest.run();
+			threadtest.start();
 			MonMondeVirtuel.getFenetreDuMonde().go();
 		}
 
