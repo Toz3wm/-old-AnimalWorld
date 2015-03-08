@@ -16,6 +16,9 @@ public class MondeVirtuel {
 	private int nbNourriture;
 	//private FenetreBoutons LaFenetreBoutons;
 	private Vector<ThreadAnimal> vectThreadAnimal;
+	private Animal[] meilleursAnimaux;
+	private int remplissageMeilleurAnimaux;
+	private FenetreResultat FenetreResultat;
 
 	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
 		this.c = c;
@@ -25,6 +28,10 @@ public class MondeVirtuel {
 		this.FenetreDuMonde = new FenetreMonde(this,c);
 		this.leMondeEstVide = true;
 		//this.LaFenetreBoutons = new FenetreBoutons(this);
+		this.vectThreadAnimal = new Vector<ThreadAnimal>();
+		this.meilleursAnimaux = new Animal[5];
+		this.remplissageMeilleurAnimaux = 0;
+		this.FenetreResultat = new FenetreResultat(this);
 
 		this.matrice = new int[largeur][longueur][2];
 		for (int i = 0; i < largeur; i++){
@@ -35,7 +42,7 @@ public class MondeVirtuel {
 			}
 		}
 	}
-	
+
 	public void backUp(){
 		Iterator<ThreadAnimal> it = vectThreadAnimal.iterator();
 		ThreadAnimal t;
@@ -124,5 +131,47 @@ public class MondeVirtuel {
 	public void updateVectThreadAnimal(ThreadAnimal a){
 		this.vectThreadAnimal.add(a);
 	}
-	
+
+	public void updateScore(ThreadAnimal threadAnimal) {
+		Animal ani = threadAnimal.getAnimal();
+		if (this.remplissageMeilleurAnimaux <= 4){
+			if (this.remplissageMeilleurAnimaux == 0){
+				this.meilleursAnimaux[0] = ani;
+				this.remplissageMeilleurAnimaux++;
+			} else if (this.remplissageMeilleurAnimaux == 1){
+				this.meilleursAnimaux[1] = ani;
+				this.remplissageMeilleurAnimaux++;
+			} else if (this.remplissageMeilleurAnimaux == 2){
+				this.meilleursAnimaux[2] = ani;
+				this.remplissageMeilleurAnimaux++;
+			} else if (this.remplissageMeilleurAnimaux == 3){
+				this.meilleursAnimaux[3] = ani;
+				this.remplissageMeilleurAnimaux++;
+			} else if (this.remplissageMeilleurAnimaux == 4){
+				this.meilleursAnimaux[4] = ani;
+				this.remplissageMeilleurAnimaux++;
+			}
+		} else {
+			if (this.meilleursAnimaux[0].getScore() <= ani.getScore()){
+				this.meilleursAnimaux[0] = ani;
+				this.FenetreResultat.getPanneau().repaint();
+			} else if (this.meilleursAnimaux[1].getScore() <= ani.getScore()){
+				this.meilleursAnimaux[1] = ani;
+				this.FenetreResultat.getPanneau().repaint();
+			} else if (this.meilleursAnimaux[2].getScore() <= ani.getScore()){
+				this.meilleursAnimaux[2] = ani;
+				this.FenetreResultat.getPanneau().repaint();
+			} else if (this.meilleursAnimaux[3].getScore() <= ani.getScore()){
+				this.meilleursAnimaux[3] = ani;
+				this.FenetreResultat.getPanneau().repaint();
+			} else if (this.meilleursAnimaux[4].getScore() <= ani.getScore()){
+				this.meilleursAnimaux[4] = ani;
+				this.FenetreResultat.getPanneau().repaint();
+			}
+
+
+	}
+
+}
+
 }

@@ -126,6 +126,7 @@ semtest = new Semaphore(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			this.leMonde.updateScore(this);
 		}
 	}
 

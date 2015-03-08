@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 public class FenetreResultat extends JFrame{
 	
 	 private PanneauResultat pan;
+	 private MondeVirtuel mon;
 
-	public FenetreResultat(){
+	public FenetreResultat(MondeVirtuel mona){
 		    this.setTitle("Résultats de la simulation");
 		    this.setSize(460, 340);
 		    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,6 +17,11 @@ public class FenetreResultat extends JFrame{
 		    this.pan = new PanneauResultat();
 		    this.setContentPane(pan);
 		    this.setVisible(true);    
+		    this.mon = mona;
 		  }
+	
+	public PanneauResultat getPanneau(){
+		return pan;
+	}
 	
 }

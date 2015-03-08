@@ -68,7 +68,7 @@ public class PanneauMonde extends JPanel {
 					g.setColor(Color.red);
 					//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
 
-					g.fillOval(5+i, 5+j, 10, 10);
+					//g.fillOval(5+i, 5+j, 10, 10);
 
 					//int nbAnimaux = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1];
 					//System.out.println("nombre d'animaux en" +"("+i+","+j+")"+"="  + nbAnimaux);
@@ -100,9 +100,9 @@ public class PanneauMonde extends JPanel {
 	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
 		 Graphics g = this.getGraphics();
 		 g.setColor(Color.white);
-		 g.fillRect(anciennePosition[0], anciennePosition[1], 2, 2);
+		 g.fillRect(10+anciennePosition[0], 10+anciennePosition[1], 2, 2);
 		 g.setColor(Color.red);
-		 g.fillRect(nouvellePosition[0], nouvellePosition[1], 2, 2);
+		 g.fillRect(10+nouvellePosition[0], 10+nouvellePosition[1], 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	
