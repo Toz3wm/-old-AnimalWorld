@@ -137,7 +137,7 @@ public class MondeVirtuel {
 // ATTENTION : CETTE METHODE PEUT CONDUIRE A UN TABLEAU REMPLI CINQ FOIS DU MEME ANIMAL S'IL N Y A QU'UN ANIMAL VIVANT
 		System.out.println(remplissageMeilleurAnimaux);
 		if (this.remplissageMeilleurAnimaux <= 4){
-			if ((this.remplissageMeilleurAnimaux == 0) && true){
+			if (this.remplissageMeilleurAnimaux == 0){
 				this.meilleursAnimaux[0] = ani;
 				this.remplissageMeilleurAnimaux++;
 			} else if ((this.remplissageMeilleurAnimaux == 1) && (this.meilleursAnimaux[0] != ani)){
