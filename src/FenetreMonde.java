@@ -17,7 +17,7 @@ public class FenetreMonde extends JFrame {
 		this.MonPan = new PanneauMonde(this, unMonde);
 		this.setTitle(c.titreMonde);
 		this.setSize(this.MonMondeVirtuel.getLargeur()+40, this.MonMondeVirtuel.getLongueur()+60);
-		this.setLocation(800,200); 
+		this.setLocation(500,350); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.semtest = new Semaphore(1);
 
@@ -46,6 +46,14 @@ public class FenetreMonde extends JFrame {
 	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
 		MonPan.paintAnimal(anciennePosition, nouvellePosition);
 	}
+	
+	
+	
+	
+	//J'aime le beurre salé et les grosses bretonnes!
+	
+	
+	
 	
 	public void paintNourriture(int[] position){
 		MonPan.paintNourriture(position);

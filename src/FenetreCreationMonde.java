@@ -50,8 +50,8 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		label2= new JLabel("Longueur du monde");
 
 
-		Tlargeur= new JTextField("500");
-		Tlongueur= new JTextField("500");
+		Tlargeur= new JTextField("100");
+		Tlongueur= new JTextField("100");
 
 
 		button1 = new JButton ("CREER");
@@ -76,12 +76,15 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		largeur = Integer.parseInt(Tlargeur.getText());
 
 
-		//bouton1 : "créer", on crée le monde et on lance la fenetre de choix d'option de création de l'animal
+		/*bouton1 : "créer", on crée le monde, 
+		on lance la fenetre de choix d'option de création de l'animal
+		et on lance la fenetreLecture
+		 */
 		if (f.getSource().equals(button1)){ 	
 			this.theWorld = new MondeVirtuel(largeur,longueur,c);
-			new FenetreBoutons(this.theWorld, c);
-
-			//pan.AfficheAnimalCree(getGraphics());
+			FenetreBoutons FB = new FenetreBoutons(this.theWorld, c);
+			this.theWorld.setLaFenetreBoutons(FB);
+			new FenetreLecture(this.theWorld);
 			this.dispose();
 		}
 

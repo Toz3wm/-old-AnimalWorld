@@ -19,6 +19,7 @@ public class MondeVirtuel {
 	private Animal[] meilleursAnimaux;
 	private int remplissageMeilleurAnimaux;
 	private FenetreResultat FenetreResultat;
+	private FenetreBoutons laFenetreBoutons;
 
 	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
 		this.c = c;
@@ -174,5 +175,21 @@ public class MondeVirtuel {
 	}
 
 }
+
+	public FenetreResultat getFenetreResultat() {
+		return FenetreResultat;
+	}
+
+	public GlobalVars getC() {
+		return c;
+	}
+
+	public FenetreBoutons getLaFenetreBoutons() {
+		return laFenetreBoutons;
+	}
+
+	public void setLaFenetreBoutons(FenetreBoutons laFenetreBoutons) {
+		this.laFenetreBoutons = laFenetreBoutons;
+	}
 
 }

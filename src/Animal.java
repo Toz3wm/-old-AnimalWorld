@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.io.Serializable ;
+import java.util.concurrent.Semaphore;
 
 
 public class Animal implements Serializable  {
@@ -23,6 +24,9 @@ public class Animal implements Serializable  {
 	//estomac: compte la nourriture, si 0, l'animal s'arrête de bouger
 	private int estomac; 
 	private int score;
+	
+	//mutex qui servira à controler le lancement ou la mise en pause du thread
+		private Semaphore MutexControl;
 
 
 
@@ -72,6 +76,9 @@ public class Animal implements Serializable  {
 		this.pbaArriereDroit = pbaArriereDroita;
 		this.estomac = estomaca;
 		this.score = 0;
+		
+		//lorsque l'on crée l'animal, on met le mutex à 1
+		this.MutexControl = new Semaphore(1);
 	}
 
 	public Animal(int estomaca, MondeVirtuel leMonde, String namea, GlobalVars c) {
@@ -102,6 +109,9 @@ public class Animal implements Serializable  {
 		this.pbaArriereDroit /= total;
 		this.estomac = estomaca;
 		this.score = 0;
+		
+		//lorsque l'on crée l'animal, on met le mutex à 1
+		this.MutexControl = new Semaphore(1);
 	}
 
 	public void bouger(MondeVirtuel leMonde, GlobalVars c){
@@ -235,6 +245,10 @@ public class Animal implements Serializable  {
 
 	public void setMaCouleur(Color maCouleur) {
 		this.maCouleur = maCouleur;
+	}
+
+	public Semaphore getMutexControl() {
+		return MutexControl;
 	}
 
 

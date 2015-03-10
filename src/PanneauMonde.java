@@ -28,6 +28,7 @@ public class PanneauMonde extends JPanel {
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
 	public void paintComponent(Graphics g){
+		
 		//System.out.println("on a bien fait un repaint du monde!");
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 		g.setColor(Color.white);
@@ -36,6 +37,7 @@ public class PanneauMonde extends JPanel {
 		g.setColor(Color.black);
 		g.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
 		//System.out.println("on a bien fait un repaint du monde!");
+		
 		/*il faux dessiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
 	qu'on a créé dans la classe MondeVirtuel*/
 

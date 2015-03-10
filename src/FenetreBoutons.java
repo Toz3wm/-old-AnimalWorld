@@ -91,8 +91,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		this.pan = new PanneauBouton(this, unMonde);
 		this.setTitle("Interface boutons");
 		this.setSize(500,520);
-		//this.setLocationRelativeTo(null); 
-		this.setLocation(300,200);
+		this.setLocation(10,150);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/*On prévient notre JFrame que notre JPanel
@@ -125,7 +124,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		TpbaAvantDroit= new JTextField("20");
 		TpbaArriereGauche= new JTextField("20");
 		TpbaArriereDroit= new JTextField("20");
-		estomacInitial = new JTextField("10");
+		estomacInitial = new JTextField("100");
 		nomAnimal =new JTextField("TOTO");
 		Torientation =new JTextField("1");
 		Tquantité =new JTextField("10");
@@ -138,7 +137,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		label9bis= new JLabel("Quantité à créer");
 		labelokbis= new JLabel("CLIQUER POUR CREER");
 
-		estomacInitialbis = new JTextField("10");
+		estomacInitialbis = new JTextField("100");
 		nomAnimalbis =new JTextField("TOTO");
 		//Torientationbis =new JTextField("1");
 		Tquantitébis =new JTextField("10");
@@ -156,7 +155,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		//ajout nourriture
 		label11= new JLabel("Quantité de nourriture à créer");
 		labelajouter= new JLabel("CLIQUER POUR AJOUTER LA NOURRITURE");
-		TqteNourriture =new JTextField("10");
+		TqteNourriture =new JTextField("10000");
 		button4 = new JButton ("ajouter");
 
 		button1.addActionListener(this);
