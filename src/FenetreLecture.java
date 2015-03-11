@@ -16,6 +16,8 @@ public class FenetreLecture extends JFrame implements ActionListener {
 
 	private PanneauLecture pan; 
 	MondeVirtuel theWorld;
+	private boolean pauseAppuye;
+	private boolean lectureAppuye;
 
 	JButton buttonLecture;
 	JButton buttonPause;
@@ -29,6 +31,8 @@ public class FenetreLecture extends JFrame implements ActionListener {
 
 	public FenetreLecture(MondeVirtuel unMonde){
 
+		this.lectureAppuye = false;
+		this.pauseAppuye = false;
 		this.theWorld = unMonde;
 		this.pan = new PanneauLecture(this);
 		this.setTitle("Interface Controle de la simulation");
@@ -73,18 +77,26 @@ public class FenetreLecture extends JFrame implements ActionListener {
 		//boutonLecture : reprend la simulation mise en pause
 		//l'idée est d'utiliser les sémaphores: on relache tout pour mettre lecture
 		if (f.getSource().equals(buttonLecture)){ 	
-			
-			System.out.println("lecture appuyé");
-			//test si il y a des animaux
-			if (this.theWorld.isLeMondeEstVide() == false){
-				
-			//on parcourt le vecteur animal
-			for (int i=0;i<this.getTheWorld().getVecteurAnimaux().size();i++){
-				
-				//on met le mutex de l'animal à 1
-				this.getTheWorld().getVecteurAnimaux().get(i).getMutexControl().release();
-				System.out.println("animal"+i+"release mutex");
-			}
+
+			//si le bouton lecture n'a pas déja été enclenché
+			if (this.lectureAppuye == false){
+
+				System.out.println("lecture appuyé");
+				//test si il y a des animaux
+				if (this.theWorld.isLeMondeEstVide() == false){
+
+					//on parcourt le vecteur animal
+					for (int i=0;i<this.getTheWorld().getVecteurAnimaux().size();i++){
+
+						//on met le mutex de l'animal à 1
+						this.getTheWorld().getVecteurAnimaux().get(i).getMutexControl().release();
+						System.out.println("animal"+i+"release mutex");
+
+						// on protège l'appuie consécutif au bouton lecture
+						this.lectureAppuye = true;
+						this.pauseAppuye = false;
+					}
+				}
 			}
 		}
 
@@ -92,23 +104,33 @@ public class FenetreLecture extends JFrame implements ActionListener {
 		//l'idée est d'utiliser les sémaphores: on "acquire" tout
 		if (f.getSource().equals(buttonPause)){ 	
 			System.out.println("pause appuyé");
-			//test si il y a des animaux
-			if (this.theWorld.isLeMondeEstVide() == false){
-				
-				//on parcourt le vecteur des animaux
-			for (int i=0;i<this.getTheWorld().getVecteurAnimaux().size();i++){
-				
-				//on met le mutex de l'animal à 0
-				try {
-					this.getTheWorld().getVecteurAnimaux().get(i).getMutexControl().acquire();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			System.out.println("BOOLEEN pause = "+this.pauseAppuye);
+
+			//si le bouton pause n'a pas encore été enclenché
+
+			if (this.pauseAppuye == false){
+				//test si il y a des animaux
+				if (this.theWorld.isLeMondeEstVide() == false){
+
+					//on parcourt le vecteur des animaux
+					for (int i=0;i<this.getTheWorld().getVecteurAnimaux().size();i++){
+
+						//on met le mutex de l'animal à 0
+						try {
+							this.getTheWorld().getVecteurAnimaux().get(i).getMutexControl().acquire();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("animal"+i+"acquire mutex");
+
+						//protection de l'appuie consécutif sur le bouton
+						this.lectureAppuye = false;
+						this.pauseAppuye = true;
+						System.out.println("BOOLEEN pause = "+this.pauseAppuye);
+					}
 				}
-				System.out.println("animal"+i+"acquire mutex");
 			}
-			}
-		
 		}
 
 		//boutonStop : on arrete completement la simulation, on revient à la fenetre de création du monde

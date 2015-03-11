@@ -264,9 +264,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						name,
 						c);
 
-				//on attribue à l'animal créé la couleur courante
-				threadtest.getAnimal().setMaCouleur(CouleurCourante);
-
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				threadtest.saveAnimal("titi.txt");
 				System.out.println(threadtest.getAnimal().getName());
@@ -285,8 +282,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					this.getMonMondeVirtuel(), 
 					name,
 					c);
-			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			System.out.println(threadtest.getAnimal().getName());
@@ -326,8 +321,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						this.getMonMondeVirtuel(), 
 						namebis,
 						this.getMonMondeVirtuel().getConstante());
-				//on attribue à l'animal créé la couleur courante
-				threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				System.out.println(threadtest.getAnimal().getName());
@@ -341,8 +334,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					this.getMonMondeVirtuel(), 
 					name,
 					c);
-			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			threadtest.saveAnimal(name + ".txt");
@@ -364,8 +355,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			CouleurCourante= new Color(r, g, b);
 
 			ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
-			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 		}
 
 		//bouton4: ajout nourriture

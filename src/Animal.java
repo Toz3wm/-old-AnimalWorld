@@ -78,7 +78,7 @@ public class Animal implements Serializable  {
 		this.score = 0;
 		
 		//lorsque l'on crée l'animal, on met le mutex à 1
-		this.MutexControl = new Semaphore(1);
+		this.MutexControl = new Semaphore(0);
 	}
 
 	public Animal(int estomaca, MondeVirtuel leMonde, String namea, GlobalVars c) {
@@ -111,7 +111,7 @@ public class Animal implements Serializable  {
 		this.score = 0;
 		
 		//lorsque l'on crée l'animal, on met le mutex à 1
-		this.MutexControl = new Semaphore(1);
+		this.MutexControl = new Semaphore(0);
 	}
 
 	public void bouger(MondeVirtuel leMonde, GlobalVars c){

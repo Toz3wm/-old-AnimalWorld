@@ -48,11 +48,9 @@ public class FenetreMonde extends JFrame {
 		MonPan.paintAnimal(unAnimal, anciennePosition, nouvellePosition);
 	}
 	
-	
-	
-	
-	//J'aime le beurre salé et les grosses bretonnes!
-	
+	public void paintAnimalInitial(Animal unAnimal, int[] Position){
+		MonPan.paintAnimalInitial(unAnimal, Position);
+	}
 	
 	
 	

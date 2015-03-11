@@ -43,7 +43,9 @@ public class ThreadAnimal extends Thread {
 		this.c = ca;
 		this.leMonde.updateVectThreadAnimal(this);
 		
-	
+		// on paint l'animal au debut
+		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
+		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
 	}
 
 	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars ca){
@@ -51,6 +53,11 @@ public class ThreadAnimal extends Thread {
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
 		this.leMonde.updateVectThreadAnimal(this);
+		
+		//on paint l'animal au debut
+		
+		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
+		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
 
 	
 	}
@@ -60,6 +67,10 @@ public class ThreadAnimal extends Thread {
 		c = ca;
 		animal = loadAnimal(fileName);
 		this.leMonde.updateVectThreadAnimal(this);
+		
+		//on paint l'animal au debut
+		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
+		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
 
 	}
 

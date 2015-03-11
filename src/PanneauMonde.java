@@ -27,15 +27,15 @@ public class PanneauMonde extends JPanel {
 	}
 
 	// méthode que l'objet appelle pour se dessiner sur la fenetre
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics gg){
 		
 		//System.out.println("on a bien fait un repaint du monde!");
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
-		g.setColor(Color.white);
+		gg.setColor(Color.white);
 		//On le dessine de sorte qu'il occupe toute la surface
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		g.setColor(Color.black);
-		g.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
+		gg.fillRect(0, 0, this.getWidth(), this.getHeight());
+		gg.setColor(Color.black);
+		gg.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
 		//System.out.println("on a bien fait un repaint du monde!");
 		
 		/*il faux dessiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
@@ -67,7 +67,7 @@ public class PanneauMonde extends JPanel {
 
 				//on vérifie si il y a des animaux
 				if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][1] !=0 ){
-					g.setColor(Color.red);
+					gg.setColor(Color.red);
 					//on redessine le cercle m fois, où m = quantité de nourriture sur la case de coordonnées (i,j)
 
 					//g.fillOval(5+i, 5+j, 10, 10);
@@ -79,10 +79,10 @@ public class PanneauMonde extends JPanel {
 				}
 
 				//On redéfinit une couleur pour le rectangle
-				g.setColor(Color.blue);
+				gg.setColor(Color.blue);
 				//on vérifie si il y a de la nourriture
 				if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
-						g.fillRect(10+i, 10+j, 1, 1);
+						gg.fillRect(10+i, 10+j, 1, 1);
 						//int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
 						//System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
 						
@@ -100,20 +100,34 @@ public class PanneauMonde extends JPanel {
 
 
 	public void paintAnimal(Animal unAnimal,int[] anciennePosition, int[] nouvellePosition){
-		 Graphics g = this.getGraphics();
-		 g.setColor(Color.white);
-		 g.fillRect(10+anciennePosition[0], 10+anciennePosition[1], 2, 2);
+		 Graphics gg = this.getGraphics();
+		 gg.setColor(Color.white);
+		 gg.fillRect(10+anciennePosition[0], 10+anciennePosition[1], 2, 2);
 		 //on récupère la couleur de l'animal
-		 g.setColor(unAnimal.getMaCouleur());
+		 gg.setColor(unAnimal.getMaCouleur());
 		 
-		 g.fillRect(10+nouvellePosition[0], 10+nouvellePosition[1], 2, 2);
+		 gg.fillRect(10+nouvellePosition[0], 10+nouvellePosition[1], 2, 2);
+		this.MaFenetreAssociee.semtest.release();
+		}
+	
+	public void paintAnimalInitial(Animal unAnimal,int[] Position){
+		 Graphics gg = this.getGraphics();
+		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
+			gg.setColor(Color.white);
+			//On le dessine de sorte qu'il occupe toute la surface
+			gg.fillRect(0, 0, this.getWidth(), this.getHeight());
+			
+		 //on récupère la couleur de l'animal
+		gg.setColor(unAnimal.getMaCouleur());
+		 
+		 gg.fillRect(10+Position[0], 10+Position[1], 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	
 	public void paintNourriture(int[] position){
-		 Graphics g = this.getGraphics();
-		 g.setColor(Color.blue);
-		 g.fillRect(position[0], position[1], 2, 2);
+		 Graphics gg = this.getGraphics();
+		 gg.setColor(Color.blue);
+		 gg.fillRect(position[0], position[1], 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	
