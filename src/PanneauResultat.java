@@ -1,14 +1,16 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Vector;
 
 import javax.swing.JPanel;
 
 
 public class PanneauResultat extends JPanel {
 	float tabGris[];
+	private FenetreResultat maFenetreAssociee;
 	
-	
-	PanneauResultat(){
+	PanneauResultat(FenetreResultat uneFenetreAssociee){
+		this.maFenetreAssociee = uneFenetreAssociee;
 	  this.setBackground(Color.red);
 	  tabGris = Color.RGBtoHSB(180, 180, 180, new float[3]);
 		
@@ -46,7 +48,7 @@ public class PanneauResultat extends JPanel {
 	}
 	
 	//attention: posX et posY sont les coordonnées du carré dans lequel s'inscrit l'ensemble de la figure (les coordonnées du coin en haut à gauche donc)
-	public void pentagone(int posX, int posY, Graphics g, double av, double avd, double ard, double arg, double avg){
+	public void pentagone(Animal a,int posX, int posY, Graphics g, double av, double avd, double ard, double arg, double avg){
 		double tab[] = {av, avd, ard, arg, avg};
 		int tabX[] = new int[5];
 		int tabY[] = new int[5];
@@ -54,13 +56,13 @@ public class PanneauResultat extends JPanel {
 			tabX[i] = (int) (posX+60-tab[i]*60*Math.cos(Math.PI/2 + Math.PI*0.4*i));
 			tabY[i] = (int) (posX+60-tab[i]*60*Math.sin(Math.PI/2 + Math.PI*0.4*i));
 		}
-		g.setColor(Color.red);
+		g.setColor(a.getMaCouleur());
 		g.fillPolygon(tabX, tabY, 5);
 	}
 
 	public void paintAnimal(int i,Animal a) {
 		this.diagrammePentagone(20, 20 + 140*i, getGraphics());
-		this.pentagone(20, 2+140*i, getGraphics(), a.getPbaAvant(), a.getPbaAvantDroit(), a.getPbaArriereDroit(), a.getPbaArriereGauche(), a.getPbaAvantGauche());
+		this.pentagone(a,20, 2+140*i, getGraphics(), a.getPbaAvant(), a.getPbaAvantDroit(), a.getPbaArriereDroit(), a.getPbaArriereGauche(), a.getPbaAvantGauche());
 	}
 	
 }

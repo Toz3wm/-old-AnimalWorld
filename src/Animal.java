@@ -155,7 +155,7 @@ public class Animal implements Serializable  {
 
 
 		//attention, il faut encore signifier au monde que l'on a bougé: mise à jour des cases du monde
-		leMonde.mouvementAnimal(anciennePosition, position);
+		leMonde.mouvementAnimal(this,anciennePosition, position);
 	}
 
 	public void mange(MondeVirtuel leMonde, GlobalVars c){

@@ -18,7 +18,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	//on lie la classe GlobalVars qui sert à régler les différents paramètres
 	private GlobalVars c;
 
-	private Color maCouleur;
+	private Color CouleurCourante;
 	private PanneauBouton pan; 
 	MondeVirtuel MonMondeVirtuel;
 	private double pbaAvant;
@@ -249,7 +249,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			float r = rand.nextFloat();
 			float g = rand.nextFloat();
 			float b = rand.nextFloat();
-			maCouleur= new Color(r, g, b);
+			CouleurCourante= new Color(r, g, b);
 
 			//on crée quantité - 1	 fois l'animal
 			for (int i=0;i<quantite-1;i++){
@@ -265,7 +265,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						c);
 
 				//on attribue à l'animal créé la couleur courante
-				threadtest.getAnimal().setMaCouleur(maCouleur);
+				threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				threadtest.saveAnimal("titi.txt");
@@ -286,7 +286,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					name,
 					c);
 			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(maCouleur);
+			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			System.out.println(threadtest.getAnimal().getName());
@@ -316,7 +316,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			float r = rand.nextFloat();
 			float g = rand.nextFloat();
 			float b = rand.nextFloat();
-			maCouleur= new Color(r, g, b);
+			CouleurCourante= new Color(r, g, b);
 
 			//on crée quantité - 1	 fois l'animal
 			for (int i=0;i<quantitebis-1;i++){
@@ -327,7 +327,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						namebis,
 						this.getMonMondeVirtuel().getConstante());
 				//on attribue à l'animal créé la couleur courante
-				threadtest.getAnimal().setMaCouleur(maCouleur);
+				threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 				MonMondeVirtuel.getFenetreDuMonde().go();
 				System.out.println(threadtest.getAnimal().getName());
@@ -342,7 +342,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					name,
 					c);
 			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(maCouleur);
+			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 
 			MonMondeVirtuel.getFenetreDuMonde().go();
 			threadtest.saveAnimal(name + ".txt");
@@ -361,11 +361,11 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 			float r = rand.nextFloat();
 			float g = rand.nextFloat();
 			float b = rand.nextFloat();
-			maCouleur= new Color(r, g, b);
+			CouleurCourante= new Color(r, g, b);
 
 			ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
 			//on attribue à l'animal créé la couleur courante
-			threadtest.getAnimal().setMaCouleur(maCouleur);
+			threadtest.getAnimal().setMaCouleur(CouleurCourante);
 		}
 
 		//bouton4: ajout nourriture
@@ -387,12 +387,12 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		MonMondeVirtuel = monMondeVirtuel;
 	}
 
-	public Color getMaCouleur() {
-		return maCouleur;
+	public Color getCouleurCourante() {
+		return CouleurCourante;
 	}
 
-	public void setMaCouleur(Color maCouleur) {
-		this.maCouleur = maCouleur;
+	public void setCouleurCourante(Color Couleur) {
+		this.CouleurCourante = Couleur;
 	}
 
 

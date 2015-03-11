@@ -43,8 +43,8 @@ public class FenetreMonde extends JFrame {
 	//	System.out.println("go");
 	}
 	
-	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
-		MonPan.paintAnimal(anciennePosition, nouvellePosition);
+	public void paintAnimal(Animal unAnimal, int[] anciennePosition, int[] nouvellePosition){
+		MonPan.paintAnimal(unAnimal, anciennePosition, nouvellePosition);
 	}
 	
 	

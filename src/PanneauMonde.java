@@ -99,11 +99,13 @@ public class PanneauMonde extends JPanel {
 	}
 
 
-	public void paintAnimal(int[] anciennePosition, int[] nouvellePosition){
+	public void paintAnimal(Animal unAnimal,int[] anciennePosition, int[] nouvellePosition){
 		 Graphics g = this.getGraphics();
 		 g.setColor(Color.white);
 		 g.fillRect(10+anciennePosition[0], 10+anciennePosition[1], 2, 2);
-		 g.setColor(Color.red);
+		 //on récupère la couleur de l'animal
+		 g.setColor(unAnimal.getMaCouleur());
+		 
 		 g.fillRect(10+nouvellePosition[0], 10+nouvellePosition[1], 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
