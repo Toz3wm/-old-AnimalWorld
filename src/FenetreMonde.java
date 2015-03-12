@@ -16,7 +16,7 @@ public class FenetreMonde extends JFrame {
 		this.MonMondeVirtuel = unMonde;
 		this.MonPan = new PanneauMonde(this, unMonde);
 		this.setTitle(c.titreMonde);
-		this.setSize(this.MonMondeVirtuel.getLargeur()+40, this.MonMondeVirtuel.getLongueur()+60);
+		this.setSize(2*this.MonMondeVirtuel.getLargeur()+40, 2*this.MonMondeVirtuel.getLongueur()+60);
 		this.setLocation(500,350); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.semtest = new Semaphore(1);

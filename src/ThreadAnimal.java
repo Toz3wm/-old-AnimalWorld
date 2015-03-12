@@ -135,12 +135,11 @@ public class ThreadAnimal extends Thread {
 			//mutex de control à 0
 			try {
 				this.animal.getMutexControl().acquire();
-			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+			} catch (InterruptedException e2) {e2.printStackTrace();
 			}
 
 			animal.bouger(leMonde, c);
+			animal.mange(leMonde, c); 
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 
 			//mutex de control remis à 1, une fois mouvement terminé

@@ -34,7 +34,7 @@ public class FenetreResultat extends JFrame{
 	public void paintResult(Vector<Animal> meilleursAnimaux) {
 		for(int i = 0; i < meilleursAnimaux.size(); i++){
 			this.pan.paintAnimal(i, meilleursAnimaux.get(i));
-			System.out.println(meilleursAnimaux);
+			//System.out.println(meilleursAnimaux);
 			this.mesMeilleursAnimaux = meilleursAnimaux;
 		}
 		

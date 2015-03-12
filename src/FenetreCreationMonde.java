@@ -53,8 +53,8 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		label2= new JLabel("Longueur du monde");
 
 
-		Tlargeur= new JTextField("100");
-		Tlongueur= new JTextField("100");
+		Tlargeur= new JTextField("500");
+		Tlongueur= new JTextField("500");
 
 
 		button1 = new JButton ("CREER");

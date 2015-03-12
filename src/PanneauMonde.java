@@ -35,7 +35,7 @@ public class PanneauMonde extends JPanel {
 		//On le dessine de sorte qu'il occupe toute la surface
 		gg.fillRect(0, 0, this.getWidth(), this.getHeight());
 		gg.setColor(Color.black);
-		gg.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur(),this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur());
+		gg.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur()*2,this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur()*2);
 		//System.out.println("on a bien fait un repaint du monde!");
 		
 		/*il faux dessiner tout les animaux du monde, à l'aide de l'attribut vecteur d'animaux 
@@ -81,7 +81,7 @@ public class PanneauMonde extends JPanel {
 				gg.setColor(Color.blue);
 				//on vérifie si il y a de la nourriture
 				if (this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0] !=0 ){
-						gg.fillRect(10+i, 10+j, 1, 1);
+						gg.fillRect(10+i*2, 10+j*2, 2, 2);
 						//int qteNourriture = this.MaFenetreAssociee.getMonMondeVirtuel().getMatrice()[i][j][0];
 						//System.out.println("qté nourriture en" +"("+i+","+j+")"+"="  + qteNourriture);
 						
@@ -116,21 +116,21 @@ public class PanneauMonde extends JPanel {
 		 //on récupère la couleur de l'animal
 		gg.setColor(unAnimal.getMaCouleur());
 		 
-		 gg.fillRect(10+Position[0], 10+Position[1], 2, 2);
+		 gg.fillRect(10+Position[0]*2, 10+Position[1]*2, 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	
 	public void paintNourriture(int[] position){
 		 Graphics gg = this.getGraphics();
 		 gg.setColor(Color.blue);
-		 gg.fillRect(10+position[0], 10+position[1], 2, 2);
+		 gg.fillRect(10+position[0]*2, 10+position[1]*2, 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	
 	public void unPaintNourriture(int[] position){
 		 Graphics gg = this.getGraphics();
 		 gg.setColor(Color.white);
-		 gg.fillRect(10+position[0],10+position[1], 2, 2);
+		 gg.fillRect(10+position[0]*2,10+position[1]*2, 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	

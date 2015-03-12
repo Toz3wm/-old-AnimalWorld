@@ -161,10 +161,12 @@ public class Animal implements Serializable  {
 	public void mange(MondeVirtuel leMonde, GlobalVars c){
 		//si il y a de la nourriture disponible, il mange
 		if (leMonde.contenu(this.position[c.X],this.position[c.Y])[c.QTE_NOURRITURE]!=0){
-			leMonde.nourritureMangee(this.position);}
+			leMonde.nourritureMangee(this.position);
+			estomac++;
+			score+=10;
+		}
 		//il faut mettre à jour l'estomac et le score
-		estomac++;
-		score+=10;
+		
 	}
 
 	public int getEstomac(){
