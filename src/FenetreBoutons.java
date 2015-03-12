@@ -131,7 +131,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		TpbaArriereGauche= new JTextField("20");
 		TpbaArriereDroit= new JTextField("20");
 		estomacInitial = new JTextField("100");
-		nomAnimal =new JTextField("gros beurre");
+		nomAnimal =new JTextField("Titi");
 		Torientation =new JTextField("1");
 		Tquantité =new JTextField("10");
 		button1 = new JButton ("OK");
