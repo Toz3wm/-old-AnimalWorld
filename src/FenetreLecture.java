@@ -32,7 +32,7 @@ public class FenetreLecture extends JFrame implements ActionListener {
 	public FenetreLecture(MondeVirtuel unMonde){
 
 		this.lectureAppuye = false;
-		this.pauseAppuye = false;
+		this.pauseAppuye = true;
 		this.theWorld = unMonde;
 		this.pan = new PanneauLecture(this);
 		this.setTitle("Interface Controle de la simulation");
@@ -40,6 +40,7 @@ public class FenetreLecture extends JFrame implements ActionListener {
 		//on place la fenetre en haut à gauche
 		this.setLocation(10, 10); 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		/*On prévient notre JFrame que notre JPanel
     sera son content pane  c'est dans celui-ci que nous placerons nos composants */
@@ -80,8 +81,11 @@ public class FenetreLecture extends JFrame implements ActionListener {
 
 			//si le bouton lecture n'a pas déja été enclenché
 			if (this.lectureAppuye == false){
-
+				
+			
+				
 				System.out.println("lecture appuyé");
+				
 				//test si il y a des animaux
 				if (this.theWorld.isLeMondeEstVide() == false){
 
@@ -112,6 +116,8 @@ public class FenetreLecture extends JFrame implements ActionListener {
 				//test si il y a des animaux
 				if (this.theWorld.isLeMondeEstVide() == false){
 
+					
+					
 					//on parcourt le vecteur des animaux
 					for (int i=0;i<this.getTheWorld().getVecteurAnimaux().size();i++){
 
@@ -128,6 +134,7 @@ public class FenetreLecture extends JFrame implements ActionListener {
 						this.lectureAppuye = false;
 						this.pauseAppuye = true;
 						System.out.println("BOOLEEN pause = "+this.pauseAppuye);
+						System.out.println("nb animaux morts: "+this.theWorld.getNbAnimauxTousMorts());
 					}
 				}
 			}
@@ -145,10 +152,61 @@ public class FenetreLecture extends JFrame implements ActionListener {
 		}
 	}
 
+	//méthode pour remettre à pause la simulation quand les animaux sont tous morts
+	public void PauseIfAllDead(){
+		
+		//test si monde non vide et animaux morts, on met la simulation en pause
+		if (this.theWorld.isLeMondeEstVide() == false){
+
+			//on parcourt tout les animaux
+			for(int k=0;k<this.theWorld.getVecteurAnimaux().size();k++){
+				// si l'animal est mort, on incrémente le compteur
+				if(this.theWorld.getVecteurAnimaux().get(k).getEstomac() == 0){
+					this.theWorld.setNbAnimauxTousMorts(this.theWorld.getNbAnimauxTousMorts()+1);
+				}
+
+				//si tout les animaux sont morts
+				if(this.theWorld.getNbAnimauxTousMorts() == this.theWorld.getVecteurAnimaux().size()){
+					this.theWorld.getMaFenetreLecture().setPauseAppuye(true);
+					this.theWorld.getMaFenetreLecture().setLectureAppuye(false);
+					System.out.println("animaux tous morts, je mets le booléen PauseAppuye à true");
+					System.out.println("nb animaux morts: "+this.theWorld.getNbAnimauxTousMorts());
+					
+					//on remet le compteur d'animaux morts à 0
+					this.theWorld.setNbAnimauxTousMorts(0);
+					System.out.println("MISE A JOUR nb animaux morts: "+this.theWorld.getNbAnimauxTousMorts());
+					
+				}
+			}
+
+		}
+	}
 
 	public MondeVirtuel getTheWorld() {
 		return theWorld;
 	}
+
+
+	public boolean isPauseAppuye() {
+		return pauseAppuye;
+	}
+
+
+	public void setPauseAppuye(boolean pauseAppuye) {
+		this.pauseAppuye = pauseAppuye;
+	}
+
+
+	public boolean isLectureAppuye() {
+		return lectureAppuye;
+	}
+
+
+	public void setLectureAppuye(boolean lectureAppuye) {
+		this.lectureAppuye = lectureAppuye;
+	}
+	
+	
 }    
 
 

@@ -41,7 +41,7 @@ public class FenetreMonde extends JFrame {
 		//On redessine notre Panneau
 		//MonPan.paint(MonPan.getGraphics());
 	//	System.out.println("go");
-		MonPan.repaint();
+		//MonPan.repaint();
 	}
 	
 	public void paintAnimal(Animal unAnimal, int[] anciennePosition, int[] nouvellePosition){

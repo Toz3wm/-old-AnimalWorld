@@ -15,8 +15,9 @@ public class ThreadAnimal extends Thread {
 	private Animal animal;
 	private MondeVirtuel leMonde;
 	private Semaphore semtest;
-	
-	
+
+
+
 
 	ThreadAnimal(double pbaAvanta,
 			double pbaAvantGauchea, 
@@ -28,7 +29,7 @@ public class ThreadAnimal extends Thread {
 			MondeVirtuel unMonde, 
 			String namea,
 			GlobalVars ca){
-		
+
 		animal  = new Animal( pbaAvanta,
 				pbaAvantGauchea,
 				pbaAvantDroita,
@@ -42,10 +43,11 @@ public class ThreadAnimal extends Thread {
 		leMonde = unMonde;
 		this.c = ca;
 		this.leMonde.updateVectThreadAnimal(this);
-		
+
 		// on paint l'animal au debut
 		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
 		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
+
 	}
 
 	ThreadAnimal(int estomaca, MondeVirtuel unMonde, String namea, GlobalVars ca){
@@ -53,13 +55,13 @@ public class ThreadAnimal extends Thread {
 		animal = new Animal(estomaca, unMonde, namea, c);
 		leMonde = unMonde;
 		this.leMonde.updateVectThreadAnimal(this);
-		
+
 		//on paint l'animal au debut
-		
+
 		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
 		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
 
-	
+
 	}
 
 	ThreadAnimal(String fileName, MondeVirtuel unMonde, GlobalVars ca){
@@ -67,7 +69,7 @@ public class ThreadAnimal extends Thread {
 		c = ca;
 		animal = loadAnimal(fileName);
 		this.leMonde.updateVectThreadAnimal(this);
-		
+
 		//on paint l'animal au debut
 		this.animal.setMaCouleur(this.leMonde.getLaFenetreBoutons().getCouleurCourante());
 		this.leMonde.getFenetreDuMonde().paintAnimalInitial(animal, animal.getPosition());
@@ -125,13 +127,11 @@ public class ThreadAnimal extends Thread {
 	}
 
 	public void run(){
-		
-		
-		
+
 		semtest = new Semaphore(1);
 		//tant qu'il a de la nourriture en stock (énergie encore), il peut se déplacer
 		while (animal.getEstomac() > 0) {
-			
+
 			//mutex de control à 0
 			try {
 				this.animal.getMutexControl().acquire();
@@ -139,13 +139,13 @@ public class ThreadAnimal extends Thread {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-			
+
 			animal.bouger(leMonde, c);
 			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
-			
+
 			//mutex de control remis à 1, une fois mouvement terminé
 			this.animal.getMutexControl().release();
-			
+
 			int duree = (int) (Math.random()*1000);
 			//dort pendant un tant aléatoire
 
@@ -169,13 +169,19 @@ public class ThreadAnimal extends Thread {
 			this.c.mutexUpdateScore.release();
 
 		}
+		// quand l'animal meurt (estomac n'est plus plein), on teste si il y a encore des animaux vivants
+		// si c'est le dernier vivant qui meurt, la simulation se met en pause
+		this.leMonde.getMaFenetreLecture().PauseIfAllDead();
 	}
+	
+
+
 
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
 	}
 
-	
-	
+
+
 
 }

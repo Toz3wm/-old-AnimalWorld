@@ -115,7 +115,7 @@ public class PanneauMonde extends JPanel {
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 			gg.setColor(Color.white);
 			//On le dessine de sorte qu'il occupe toute la surface
-			gg.fillRect(0, 0, this.getWidth(), this.getHeight());
+			//gg.fillRect(0, 0, this.getWidth(), this.getHeight());
 			
 		 //on récupère la couleur de l'animal
 		gg.setColor(unAnimal.getMaCouleur());

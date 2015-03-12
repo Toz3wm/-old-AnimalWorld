@@ -4,14 +4,18 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.util.Random;
+
+import java.awt.event.KeyListener;
 
 public class FenetreBoutons extends JFrame implements ActionListener {
 
@@ -67,7 +71,7 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	JLabel label11;
 	JLabel labelajouter;
 
-	JTextField TpbaAvant;
+	JTextField TpbaAvant; 	
 	JTextField TpbaAvantGauche;
 	JTextField TpbaAvantDroit;
 	JTextField TpbaArriereGauche;
@@ -76,6 +80,8 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 	JTextField nomAnimal;
 	JTextField Torientation;
 	JTextField Tquantité;
+
+
 
 	JTextField estomacInitialbis;
 	JTextField nomAnimalbis;
@@ -125,10 +131,12 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		TpbaArriereGauche= new JTextField("20");
 		TpbaArriereDroit= new JTextField("20");
 		estomacInitial = new JTextField("100");
-		nomAnimal =new JTextField("TOTO");
+		nomAnimal =new JTextField("gros beurre");
 		Torientation =new JTextField("1");
 		Tquantité =new JTextField("10");
 		button1 = new JButton ("OK");
+
+
 
 		//pour le 2e constructeur aléatoire
 		label6bis= new JLabel("Quantité de nourriture initiale dans l'estomac");
@@ -229,66 +237,94 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		//bouton1 : "ok" on créé l'animal personnalisé
 		if (e.getSource().equals(button1)){ 
 
-			//on récupère les données entrées		
-			//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
-			pbaAvant= Float.parseFloat(TpbaAvant.getText())/100;
-			pbaAvantGauche = Float.parseFloat(TpbaAvantGauche.getText())/100;
-			pbaAvantDroit = Float.parseFloat(TpbaAvantDroit.getText())/100;
-			pbaArriereGauche = Float.parseFloat(TpbaArriereGauche.getText())/100;
-			pbaArriereDroit = Float.parseFloat(TpbaArriereDroit.getText())/100;
-			estomac = Integer.parseInt(estomacInitial.getText());
-			orientation =Integer.parseInt(Torientation.getText());
-			name = (nomAnimal.getText());
-			quantite = Integer.parseInt(Tquantité.getText());
+			//on vérifie que les champs sont remplis avec des décimaux
+			try {
 
-			MonMondeVirtuel.getFenetreDuMonde().go();
+				double unDouble1 = Double.valueOf(TpbaAvant.getText());
+				double unDouble2 = Double.valueOf(TpbaAvantGauche.getText());
+				double unDouble3 = Double.valueOf(TpbaAvantDroit.getText());
+				double unDouble4 = Double.valueOf(TpbaArriereGauche.getText());
+				double unDouble5 = Double.valueOf(TpbaArriereDroit.getText());
 
-			//on attribue une couleur aléatoire
-			Random rand = new Random();
-			// Java 'Color' class takes 3 floats, from 0 to 1.
-			float r = rand.nextFloat();
-			float g = rand.nextFloat();
-			float b = rand.nextFloat();
-			CouleurCourante= new Color(r, g, b);
+				int unEntier6 = Integer.valueOf(Torientation.getText());
+				int unEntier7 = Integer.valueOf(Tquantité.getText());
+				int unEntier8 = Integer.valueOf(this.estomacInitial.getText());
 
-			//on crée quantité - 1	 fois l'animal
-			for (int i=0;i<quantite-1;i++){
-				ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
-						pbaAvantGauche,
-						pbaAvantDroit,
-						pbaArriereGauche,
-						pbaArriereDroit,
-						estomac,
-						orientation, 
-						this.getMonMondeVirtuel(), 
-						name,
-						c);
+				//on vérifie que la simulation n'est pas en lecture
+				if (this.MonMondeVirtuel.getMaFenetreLecture().isLectureAppuye() == false){
 
-				MonMondeVirtuel.getFenetreDuMonde().go();
-				threadtest.saveAnimal("titi.txt");
-				System.out.println(threadtest.getAnimal().getName());
-				threadtest.start();
-				MonMondeVirtuel.getFenetreDuMonde().go();}
+					//on récupère les données entrées		
+					//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
+					pbaAvant= Float.parseFloat(TpbaAvant.getText())/100;
+					pbaAvantGauche = Float.parseFloat(TpbaAvantGauche.getText())/100;
+					pbaAvantDroit = Float.parseFloat(TpbaAvantDroit.getText())/100;
+					pbaArriereGauche = Float.parseFloat(TpbaArriereGauche.getText())/100;
+					pbaArriereDroit = Float.parseFloat(TpbaArriereDroit.getText())/100;
+					estomac = Integer.parseInt(estomacInitial.getText());
+					orientation =Integer.parseInt(Torientation.getText());
+					name = (nomAnimal.getText());
+					quantite = Integer.parseInt(Tquantité.getText());
+
+					MonMondeVirtuel.getFenetreDuMonde().go();
+
+					//on attribue une couleur aléatoire
+					Random rand = new Random();
+					// Java 'Color' class takes 3 floats, from 0 to 1.
+					float r = rand.nextFloat();
+					float g = rand.nextFloat();
+					float b = rand.nextFloat();
+					CouleurCourante= new Color(r, g, b);
+
+					//on crée quantité - 1	 fois l'animal
+					for (int i=0;i<quantite-1;i++){
+						ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
+								pbaAvantGauche,
+								pbaAvantDroit,
+								pbaArriereGauche,
+								pbaArriereDroit,
+								estomac,
+								orientation, 
+								this.getMonMondeVirtuel(), 
+								name,
+								c);
+
+						MonMondeVirtuel.getFenetreDuMonde().go();
+						threadtest.saveAnimal("titi.txt");
+						System.out.println(threadtest.getAnimal().getName());
+						threadtest.start();
+						MonMondeVirtuel.getFenetreDuMonde().go();}
 
 
-			//on crée une dernière fois l'animal et on ne sauvegarde qu'une fois
-			ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
-					pbaAvantGauche,
-					pbaAvantDroit,
-					pbaArriereGauche,
-					pbaArriereDroit,
-					estomac,
-					orientation, 
-					this.getMonMondeVirtuel(), 
-					name,
-					c);
+					//on crée une dernière fois l'animal et on ne sauvegarde qu'une fois
+					ThreadAnimal threadtest = new ThreadAnimal(pbaAvant,
+							pbaAvantGauche,
+							pbaAvantDroit,
+							pbaArriereGauche,
+							pbaArriereDroit,
+							estomac,
+							orientation, 
+							this.getMonMondeVirtuel(), 
+							name,
+							c);
 
-			MonMondeVirtuel.getFenetreDuMonde().go();
-			System.out.println(threadtest.getAnimal().getName());
-			threadtest.start();
-			MonMondeVirtuel.getFenetreDuMonde().go();
+					MonMondeVirtuel.getFenetreDuMonde().go();
+					System.out.println(threadtest.getAnimal().getName());
+					threadtest.start();
+					MonMondeVirtuel.getFenetreDuMonde().go();
 
-			//pan.AfficheAnimalCree(getGraphics());
+					//pan.AfficheAnimalCree(getGraphics());
+				}
+			} catch (NumberFormatException nfe) {
+
+				System.out.println("Une des valeurs n'est pas un nombre" );
+				JOptionPane.showMessageDialog(this,
+						"Une des valeurs n'est pas un nombre",
+						"warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
+
+
+
 		}
 
 
@@ -297,78 +333,118 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		//bouton2 : "ok" on créé l'animal aléatoire
 		if (e.getSource().equals(button2)){ 
 
-			//on récupère les données entrées		
-			//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
+			try {
+				//vérification des champs
+				int unEntier7 = Integer.valueOf(Tquantitébis.getText());
+				int unEntier8 = Integer.valueOf(estomacInitialbis.getText());
 
-			estomacbis = Integer.parseInt(estomacInitialbis.getText());
-			//orientationbis =Integer.parseInt(Torientationbis.getText());
-			namebis = (nomAnimalbis.getText());
-			quantitebis = Integer.parseInt(Tquantitébis.getText());
+				//on vérifie que la simulation n'est pas en lecture
+				if (this.MonMondeVirtuel.getMaFenetreLecture().isLectureAppuye() == false){
 
-			//on attribue une couleur aléatoire
-			Random rand = new Random();
-			// Java 'Color' class takes 3 floats, from 0 to 1.
-			float r = rand.nextFloat();
-			float g = rand.nextFloat();
-			float b = rand.nextFloat();
-			CouleurCourante= new Color(r, g, b);
+					//on récupère les données entrées		
+					//on convertit le texte string en float, on divise par 100 pour obtenir la pba <1
 
-			//on crée quantité - 1	 fois l'animal
-			for (int i=0;i<quantitebis-1;i++){
-				MonMondeVirtuel.getFenetreDuMonde().go();
-				ThreadAnimal threadtest = new ThreadAnimal(
-						estomacbis,
-						this.getMonMondeVirtuel(), 
-						namebis,
-						this.getMonMondeVirtuel().getConstante());
+					estomacbis = Integer.parseInt(estomacInitialbis.getText());
+					//orientationbis =Integer.parseInt(Torientationbis.getText());
+					namebis = (nomAnimalbis.getText());
+					quantitebis = Integer.parseInt(Tquantitébis.getText());
 
-				MonMondeVirtuel.getFenetreDuMonde().go();
-				System.out.println(threadtest.getAnimal().getName());
-				threadtest.start();
-				MonMondeVirtuel.getFenetreDuMonde().go();
+					//on attribue une couleur aléatoire
+					Random rand = new Random();
+					// Java 'Color' class takes 3 floats, from 0 to 1.
+					float r = rand.nextFloat();
+					float g = rand.nextFloat();
+					float b = rand.nextFloat();
+					CouleurCourante= new Color(r, g, b);
+
+					//on crée quantité - 1	 fois l'animal
+					for (int i=0;i<quantitebis-1;i++){
+						MonMondeVirtuel.getFenetreDuMonde().go();
+						ThreadAnimal threadtest = new ThreadAnimal(
+								estomacbis,
+								this.getMonMondeVirtuel(), 
+								namebis,
+								this.getMonMondeVirtuel().getConstante());
+
+						MonMondeVirtuel.getFenetreDuMonde().go();
+						System.out.println(threadtest.getAnimal().getName());
+						threadtest.start();
+						MonMondeVirtuel.getFenetreDuMonde().go();
+					}
+
+					//on crée une dernière fois l'animal et on ne sauvegarde qu'une fois
+					ThreadAnimal threadtest = new ThreadAnimal(
+							estomac,
+							this.getMonMondeVirtuel(), 
+							name,
+							c);
+
+					MonMondeVirtuel.getFenetreDuMonde().go();
+					threadtest.saveAnimal(name + ".txt");
+					System.out.println(threadtest.getAnimal().getName());
+					threadtest.start();
+					MonMondeVirtuel.getFenetreDuMonde().go();
+
+				}
 			}
+			catch (NumberFormatException nfe) {
 
-			//on crée une dernière fois l'animal et on ne sauvegarde qu'une fois
-			ThreadAnimal threadtest = new ThreadAnimal(
-					estomac,
-					this.getMonMondeVirtuel(), 
-					name,
-					c);
-
-			MonMondeVirtuel.getFenetreDuMonde().go();
-			threadtest.saveAnimal(name + ".txt");
-			System.out.println(threadtest.getAnimal().getName());
-			threadtest.start();
-			MonMondeVirtuel.getFenetreDuMonde().go();
+				System.out.println("Une des valeurs n'est pas un nombre" );
+				JOptionPane.showMessageDialog(this,
+						"Une des valeurs n'est pas un nombre",
+						"warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
+
+
 
 		//bouton3: charger un profil
 		if (e.getSource().equals(button3)){ 
 
-			fileName = TfileName.getText();
-			//on attribue une couleur aléatoire
-			Random rand = new Random();
-			// Java 'Color' class takes 3 floats, from 0 to 1.
-			float r = rand.nextFloat();
-			float g = rand.nextFloat();
-			float b = rand.nextFloat();
-			CouleurCourante= new Color(r, g, b);
+			//on vérifie que la simulation n'est pas en lecture
+			if (this.MonMondeVirtuel.getMaFenetreLecture().isLectureAppuye() == false){
+				fileName = TfileName.getText();
+				//on attribue une couleur aléatoire
+				Random rand = new Random();
+				// Java 'Color' class takes 3 floats, from 0 to 1.
+				float r = rand.nextFloat();
+				float g = rand.nextFloat();
+				float b = rand.nextFloat();
+				CouleurCourante= new Color(r, g, b);
 
-			ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
+				ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
+			}
 		}
 
 		//bouton4: ajout nourriture
 		if (e.getSource().equals(button4)){ 
 
-			//on lance la création plusieurs fois
-			for(int i=0;i<Integer.parseInt(TqteNourriture.getText())-2;i++){
+			try {
+				//vérification des champs
+				int unEntier = Integer.valueOf(TqteNourriture.getText());
+
+
+				//on lance la création plusieurs fois
+				for(int i=0;i<Integer.parseInt(TqteNourriture.getText())-2;i++){
+					int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLongueur())};
+					new Nourriture(p, MonMondeVirtuel);
+
+				}
+
 				int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLongueur())};
 				new Nourriture(p, MonMondeVirtuel);
-				
+				this.MonMondeVirtuel.getFenetreDuMonde().go();
 			}
-			int[] p={(int)(Math.random()*MonMondeVirtuel.getLargeur()),(int)(Math.random()*MonMondeVirtuel.getLongueur())};
-			new Nourriture(p, MonMondeVirtuel);
-			this.MonMondeVirtuel.getFenetreDuMonde().go();
+
+			catch (NumberFormatException nfe) {
+
+				System.out.println("La quantité de nourriture doit être entière" );
+				JOptionPane.showMessageDialog(this,
+						"La quantité de nourriture doit être entière",
+						"warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 
@@ -384,7 +460,6 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 		this.CouleurCourante = Couleur;
 	}
 
-
-}    
+}
 
 

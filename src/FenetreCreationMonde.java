@@ -9,8 +9,11 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import javax.swing.Popup;
 
 public class FenetreCreationMonde extends JFrame implements ActionListener {
 
@@ -71,21 +74,42 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent f){  // on met en place les boutons
 
-		//on convertit le texte string en int
-		longueur=Integer.parseInt(Tlongueur.getText());
-		largeur = Integer.parseInt(Tlargeur.getText());
-
-
 		/*bouton1 : "créer", on crée le monde, 
 		on lance la fenetre de choix d'option de création de l'animal
 		et on lance la fenetreLecture
 		 */
-		if (f.getSource().equals(button1)){ 	
+		if (f.getSource().equals(button1)){ 
+			
+		//on convertit le texte string en int	
+			//on teste si le contenu est un entier
+		    try {
+		    	//on teste la longueur et la largeur
+		    	
+		        int unEntier = Integer.valueOf(Tlongueur.getText());
+		        
+		        int unAutreEntier = Integer.valueOf(Tlargeur.getText());
+		        
+		        longueur=Integer.parseInt(Tlongueur.getText());
+		        
+		        largeur = Integer.parseInt(Tlargeur.getText());
+			
 			this.theWorld = new MondeVirtuel(largeur,longueur,c);
 			FenetreBoutons FB = new FenetreBoutons(this.theWorld, c);
 			this.theWorld.setLaFenetreBoutons(FB);
-			new FenetreLecture(this.theWorld);
+			FenetreLecture uneFenetreLecture = new FenetreLecture(this.theWorld);
+			this.theWorld.setMaFenetreLecture(uneFenetreLecture);
 			this.dispose();
+			
+		    } catch (NumberFormatException nfe) {
+		       
+		    	System.out.println("Une des valeurs n'est pas entière" );
+		        JOptionPane.showMessageDialog(this,
+		        	    "Une des valeurs n'est pas entière",
+		        	    "warning",
+		        	    JOptionPane.WARNING_MESSAGE);
+		    }
+			
+			
 		}
 
 

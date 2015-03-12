@@ -12,6 +12,7 @@ public class MondeVirtuel {
 	private int[][][] matrice;
 	private Vector<Animal> VecteurAnimaux;
 	private FenetreMonde FenetreDuMonde;
+	private FenetreLecture MaFenetreLecture;
 	private boolean leMondeEstVide;
 	private int nbNourriture;
 	//private FenetreBoutons LaFenetreBoutons;
@@ -20,6 +21,8 @@ public class MondeVirtuel {
 	private int remplissageMeilleurAnimaux;
 	private FenetreResultat FenetreResultat;
 	private FenetreBoutons laFenetreBoutons;
+	// compteur d'animaux morts
+		private int nbAnimauxTousMorts;
 
 	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
 		this.c = c;
@@ -70,6 +73,7 @@ public class MondeVirtuel {
 		matrice[nouvellePosition[0]][nouvellePosition[1]][1]++;
 		//System.out.println("un animal a bougé!");
 		this.FenetreDuMonde.paintAnimal(unAnimal,anciennePosition, nouvellePosition);
+		
 	}
 
 	public void animalCree(int[] position, Animal unAnimal) {
@@ -179,9 +183,9 @@ public class MondeVirtuel {
 	public void updateScore(ThreadAnimal threadAnimal) {
 		Animal ani = threadAnimal.getAnimal();
 		// ATTENTION : CETTE METHODE PEUT CONDUIRE A UN TABLEAU REMPLI CINQ FOIS DU MEME ANIMAL S'IL N Y A QU'UN ANIMAL VIVANT
-		System.out.println("il y a dans meilleursanimaux: "+remplissageMeilleurAnimaux);
-		System.out.println("les meilleurs animaux sont : "+ meilleursAnimaux);
-		System.out.println(ani.getName()+" score: "+ani.getScore());
+		//System.out.println("il y a dans meilleursanimaux: "+remplissageMeilleurAnimaux);
+		//System.out.println("les meilleurs animaux sont : "+ meilleursAnimaux);
+		//System.out.println(ani.getName()+" score: "+ani.getScore());
 		
 
 		//cas où il y a encore de la place dans le tableau
@@ -362,6 +366,22 @@ public class MondeVirtuel {
 
 	public void setLaFenetreBoutons(FenetreBoutons laFenetreBoutons) {
 		this.laFenetreBoutons = laFenetreBoutons;
+	}
+
+	public FenetreLecture getMaFenetreLecture() {
+		return MaFenetreLecture;
+	}
+
+	public void setMaFenetreLecture(FenetreLecture maFenetreLecture) {
+		MaFenetreLecture = maFenetreLecture;
+	}
+
+	public int getNbAnimauxTousMorts() {
+		return nbAnimauxTousMorts;
+	}
+
+	public void setNbAnimauxTousMorts(int nbAnimauxTousMorts) {
+		this.nbAnimauxTousMorts = nbAnimauxTousMorts;
 	}
 
 }
