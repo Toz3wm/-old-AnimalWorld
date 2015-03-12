@@ -86,11 +86,13 @@ public class MondeVirtuel {
 	public void nourritureCree(int[] position) {
 
 		matrice[position[0]][position[1]][0]++;
+		this.FenetreDuMonde.paintNourriture(position);
 	}
 
 	public void nourritureMangee(int[] position) {
 		matrice[position[0]][position[1]][0]--;
 		nbNourriture--;
+		this.FenetreDuMonde.unPaintNourriture(position);
 	}
 
 	public Vector<Animal> getVecteurAnimaux() {
