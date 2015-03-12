@@ -17,12 +17,14 @@ public class MondeVirtuel {
 	private int nbNourriture;
 	//private FenetreBoutons LaFenetreBoutons;
 	private Vector<ThreadAnimal> vectThreadAnimal;
+	private Vector<Animal> m;
+	private long cdAffichageScore;
 	private Animal[] meilleursAnimaux;
 	private int remplissageMeilleurAnimaux;
 	private FenetreResultat FenetreResultat;
 	private FenetreBoutons laFenetreBoutons;
 	// compteur d'animaux morts
-		private int nbAnimauxTousMorts;
+	private int nbAnimauxTousMorts;
 
 	public MondeVirtuel(int largeur, int longueur, GlobalVars c) {
 		this.c = c;
@@ -34,6 +36,8 @@ public class MondeVirtuel {
 		//this.LaFenetreBoutons = new FenetreBoutons(this);
 		this.vectThreadAnimal = new Vector<ThreadAnimal>();
 		this.meilleursAnimaux = new Animal[5];
+		this.m = new Vector<Animal>();
+		this.cdAffichageScore = 0;
 		this.remplissageMeilleurAnimaux = 0;
 		this.FenetreResultat = new FenetreResultat(this);
 
@@ -181,7 +185,7 @@ public class MondeVirtuel {
 	}
 
 }*/
-
+/*
 	public void updateScore(ThreadAnimal threadAnimal) {
 		Animal ani = threadAnimal.getAnimal();
 		// ATTENTION : CETTE METHODE PEUT CONDUIRE A UN TABLEAU REMPLI CINQ FOIS DU MEME ANIMAL S'IL N Y A QU'UN ANIMAL VIVANT
@@ -202,7 +206,7 @@ public class MondeVirtuel {
 				System.out.println("tableau vide je remplis");
 				
 				//si tableau a 1 animal
-			} else if ((this.remplissageMeilleurAnimaux == 1) /*&& (this.meilleursAnimaux[0] != ani)*/){
+			} else if ((this.remplissageMeilleurAnimaux == 1) /*&& (this.meilleursAnimaux[0] != ani)){
 				//si ani est meilleur que le n°1
 				if (this.meilleursAnimaux[0].getScore()<ani.getScore()){
 					this.meilleursAnimaux[1] = this.meilleursAnimaux[0];
@@ -352,7 +356,179 @@ public class MondeVirtuel {
 				this.meilleursAnimaux[4]=ani;
 			}		
 
+	}*/
+
+	public int vectscore(int  i){
+		return m.get(i).getScore();
 	}
+
+	void updateScore(ThreadAnimal a){
+		Animal e = a.getAnimal();
+		int score = e.getScore();
+		boolean chgt = false; 
+		// on teste si l'animal est déjà dans le vecteur
+
+
+		System.out.println(m);
+		m.remove(e);
+
+		
+		//si le vecteur est vide
+		if (m.isEmpty()){
+			//on y met l'animal
+			chgt = true; m.add(0, e);
+			System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+		}//sinon
+		else if (m.size()==1){
+			//on compare les deux scores et on agit en conséquence
+			boolean true0 = (score > vectscore(0));
+			if (true0){
+				chgt = true; m.add(0, e); 
+				System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+			} 
+			else {
+				chgt = true; m.add(1,e); 
+				System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 2eme place du tableau");
+			}
+		}
+		//s'il y a deux animaux dans le vecteur
+		else if (m.size()==2){
+			boolean true1 = (score > vectscore(1));
+			boolean true0 = (score > vectscore(0));
+
+			if (true1) {
+				if (true0){
+					chgt = true; m.add(0,e);
+					System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+				} 
+				else {
+					chgt = true; m.add(1,e);
+					System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 2eme place du tableau");
+				}
+			}
+			else {
+				chgt = true; m.add(2,e);
+				System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 3eme place du tableau");
+			}
+		} 
+		//s'il y a trois animaux dans le vecteur
+		else if (m.size()==3) {
+			boolean true1 = (score > vectscore(1));
+			boolean true0 = (score > vectscore(0));
+			boolean true2 = (score > vectscore(2));
+
+			if (true2) {
+				if (true1) {
+					if (true0){
+						chgt = true; m.add(0,e);
+						System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+					} 
+					else {
+						chgt = true; m.add(1,e);
+						System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 2eme place du tableau");
+					}
+				}
+				else {
+					chgt = true; m.add(2,e);
+					System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 3eme place du tableau");
+				}	
+			}
+			else {
+				chgt = true; m.add(3,e);
+				System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 4eme place du tableau");
+			}
+		}
+		//s'il y a quatre animaux dans le vecteur
+		else if (m.size()==4){
+			boolean true1 = (score > vectscore(1));
+			boolean true0 = (score > vectscore(0));
+			boolean true2 = (score > vectscore(2));
+			boolean true3 = (score > vectscore(3));
+
+			if (true3) {
+				if (true2) {
+					if (true1) {
+						if (true0){
+							chgt = true; m.add(0,e);
+							System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+						} 
+						else {
+							chgt = true; m.add(1,e);
+							System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 2eme place du tableau");
+						}
+					}
+					else {
+						chgt = true; m.add(2,e);
+						System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 3eme place du tableau");
+					}	
+				}
+				else {
+					chgt = true; m.add(3,e);
+					System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 4eme place du tableau");
+				}
+			} 
+			else {
+				chgt = true; m.add(4,e);
+				System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la dernière place du tableau");
+			}
+		}
+		else {
+			boolean true1 = (score > vectscore(1));
+			boolean true0 = (score > vectscore(0));
+			boolean true2 = (score > vectscore(2));
+			boolean true3 = (score > vectscore(3));
+			boolean true4 = (score > vectscore(4));
+
+			if (true4) {
+				if (true3) {
+					if (true2) {
+						if (true1) {
+							if (true0){
+								chgt = true; m.add(0,e);
+								System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la première place du tableau");
+							} 
+							else {
+								chgt = true; m.add(1,e);
+								System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 2eme place du tableau");
+							}
+						}
+						else {
+							chgt = true; m.add(2,e);
+							System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 3eme place du tableau");
+						}	
+					}
+					else {
+						chgt = true; m.add(3,e);
+						System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la 4eme place du tableau");
+					}
+				}
+				else {
+					chgt = true; m.add(4,e);
+					System.out.println("On met " + e.getName() + " score " + e.getScore() + "à la dernière place du tableau");
+				}
+			}
+			else {
+				//on a tout simplement rien à faire, le score est trop petit! 
+			}
+		}
+
+		System.out.println(m);
+
+
+		if (chgt && (System.currentTimeMillis() > (this.cdAffichageScore + 500)) ) {
+			while (m.size()> 5 ){
+				m.remove(m.size()-1);
+				
+			}
+			System.out.println(this.cdAffichageScore);
+			this.cdAffichageScore = System.currentTimeMillis();
+			this.FenetreResultat.paintResult(m); 
+		}
+
+
+	}
+
+
 
 	public FenetreResultat getFenetreResultat() {
 		return FenetreResultat;

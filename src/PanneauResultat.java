@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 public class PanneauResultat extends JPanel {
 	float tabGris[];
 	private FenetreResultat maFenetreAssociee;
-	
+
 	PanneauResultat(FenetreResultat uneFenetreAssociee){
 		this.maFenetreAssociee = uneFenetreAssociee;
-	  this.setBackground(Color.red);
-	  tabGris = Color.RGBtoHSB(180, 180, 180, new float[3]);
-		
+		this.setBackground(Color.red);
+		tabGris = Color.RGBtoHSB(180, 180, 180, new float[3]);
+
 	}
 
 	public void paintComponent(Graphics g){
@@ -29,9 +29,10 @@ public class PanneauResultat extends JPanel {
 		diagrammePentagone(240,160, g);
 		pentagone(20,20,g,0.8,0.6,0.4,0.2,0.5);*/
 	}
-	
-	public void diagrammePentagone(int posX, int posY, Graphics g){
 
+	public void diagrammePentagone(int posX, int posY, Graphics g){
+		g.setColor(Color.white);
+		g.fillRect(posX, posY, 120, 120); 
 		g.setColor(Color.getHSBColor(tabGris[0],tabGris[1], tabGris[2]));
 		g.drawOval(posX,posY,120,120);
 		g.drawOval(posX+12,posY+12,96,96);
@@ -44,25 +45,25 @@ public class PanneauResultat extends JPanel {
 		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*1.2)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*1.2)));
 		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*1.6)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*1.6)));
 		g.drawLine(posX+60, posY+60, (int) (posX+60-60*Math.cos(Math.PI/2 + Math.PI*0.8)), (int) (posY+60-60*Math.sin(Math.PI/2 + Math.PI*0.8)));
-		
+
 	}
-	
+
 	//attention: posX et posY sont les coordonnées du carré dans lequel s'inscrit l'ensemble de la figure (les coordonnées du coin en haut à gauche donc)
 	public void pentagone(Animal a,int posX, int posY, Graphics g, double av, double avd, double ard, double arg, double avg){
 		double tab[] = {av, avd, ard, arg, avg};
 		int tabX[] = new int[5];
 		int tabY[] = new int[5];
 		for(int i = 0; i <5; i++){
-			tabX[i] = (int) (posX+60-tab[i]*60*Math.cos(Math.PI/2 + Math.PI*0.4*i));
-			tabY[i] = (int) (posX+60-tab[i]*60*Math.sin(Math.PI/2 + Math.PI*0.4*i));
+			tabX[i] = (int) (posX+60-tab[i]*60*Math.cos(Math.PI/2 + Math.PI*0.4*i)*2);
+			tabY[i] = (int) (posY+60-tab[i]*60*Math.sin(Math.PI/2 + Math.PI*0.4*i)*2);
 		}
 		g.setColor(a.getMaCouleur());
 		g.fillPolygon(tabX, tabY, 5);
 	}
 
 	public void paintAnimal(int i,Animal a) {
-		this.diagrammePentagone(20, 20 + 140*i, getGraphics());
-		this.pentagone(a,20, 2+140*i, getGraphics(), a.getPbaAvant(), a.getPbaAvantDroit(), a.getPbaArriereDroit(), a.getPbaArriereGauche(), a.getPbaAvantGauche());
+		this.diagrammePentagone( 20 + 140*i, 20, getGraphics());
+		this.pentagone(a, 20+140*i, 20, getGraphics(), a.getPbaAvant(), a.getPbaAvantDroit(), a.getPbaArriereDroit(), a.getPbaArriereGauche(), a.getPbaAvantGauche());
 	}
-	
+
 }

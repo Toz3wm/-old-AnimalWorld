@@ -349,16 +349,16 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					namebis = (nomAnimalbis.getText());
 					quantitebis = Integer.parseInt(Tquantitébis.getText());
 
-					//on attribue une couleur aléatoire
-					Random rand = new Random();
-					// Java 'Color' class takes 3 floats, from 0 to 1.
-					float r = rand.nextFloat();
-					float g = rand.nextFloat();
-					float b = rand.nextFloat();
-					CouleurCourante= new Color(r, g, b);
-
+			
 					//on crée quantité - 1	 fois l'animal
 					for (int i=0;i<quantitebis-1;i++){
+						//on attribue une couleur aléatoire
+						Random rand = new Random();
+						// Java 'Color' class takes 3 floats, from 0 to 1.
+						float r = rand.nextFloat();
+						float g = rand.nextFloat();
+						float b = rand.nextFloat();
+						CouleurCourante= new Color(r, g, b);
 						MonMondeVirtuel.getFenetreDuMonde().go();
 						ThreadAnimal threadtest = new ThreadAnimal(
 								estomacbis,
