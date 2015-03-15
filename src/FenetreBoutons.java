@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.util.Random;
 
+import java.util.Random;
 import java.awt.event.KeyListener;
 
 public class FenetreBoutons extends JFrame implements ActionListener {
@@ -250,6 +250,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 				int unEntier7 = Integer.valueOf(Tquantité.getText());
 				int unEntier8 = Integer.valueOf(this.estomacInitial.getText());
 
+				
+				if  (unDouble1 <= 0 || unDouble2 <= 0 
+						|| unDouble1 <= 3 || unDouble1 <= 4 
+						|| unDouble1 <= 5 || unEntier6 <= 0 
+						|| unEntier7 <= 0 || unEntier8 <= 0 ) {
+					Torientation.setText(null); 
+				}
+				
 				//on vérifie que la simulation n'est pas en lecture
 				if (this.MonMondeVirtuel.getMaFenetreLecture().isLectureAppuye() == false){
 
@@ -327,6 +335,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						"Une des valeurs n'est pas un nombre",
 						"warning",
 						JOptionPane.WARNING_MESSAGE);
+				TpbaAvant.setText("20");
+				TpbaAvantGauche.setText("20");
+				TpbaAvantDroit.setText("20");
+				TpbaArriereGauche.setText("20");
+				TpbaArriereDroit.setText("20");
+				Torientation.setText("1");
+				Tquantité.setText("100");
+				estomacInitial.setText("10");
 			}
 
 
@@ -355,7 +371,13 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					namebis = (nomAnimalbis.getText());
 					quantitebis = Integer.parseInt(Tquantitébis.getText());
 
-			
+					
+					if  ( unEntier7 <= 0 || unEntier8 <= 0 ) {
+						Tquantitébis.setText(null);
+						quantitebis = Integer.parseInt(Tquantitébis.getText());
+					}
+					
+					
 					//on crée quantité - 1	 fois l'animal
 					for (int i=0;i<quantitebis-1;i++){
 						//on attribue une couleur aléatoire
@@ -406,6 +428,8 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						"Une des valeurs n'est pas un nombre",
 						"warning",
 						JOptionPane.WARNING_MESSAGE);
+				Tquantitébis.setText("10");
+				estomacInitialbis.setText("100");
 			}
 		}
 

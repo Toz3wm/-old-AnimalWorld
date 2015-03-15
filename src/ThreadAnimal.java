@@ -2,6 +2,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -103,21 +104,25 @@ public class ThreadAnimal extends Thread {
 		//on déclare l'animal qui sera créé
 		Animal ani = null;
 		try {
-			//on initialise le flux
-			input = new ObjectInputStream(
-					//utilisation d'un tampon
-					new BufferedInputStream(
-							new FileInputStream(
-									new File(filename))));
-			try {//on crée l'instance de l'animal à partir du fichier
-				ani = (Animal) input.readObject();
-			} catch (ClassNotFoundException e)
-			{e.printStackTrace();
+			try {
+				//on initialise le flux
+				input = new ObjectInputStream(
+						//utilisation d'un tampon
+						new BufferedInputStream(
+								new FileInputStream(
+										new File(filename))));
+				try {//on crée l'instance de l'animal à partir du fichier
+					ani = (Animal) input.readObject();
+				} catch (ClassNotFoundException e)
+				{e.printStackTrace();
+				}
+				//on ferme le flux
+				input.close();
+			} catch (IOException e){
+				e.printStackTrace();
 			}
-			//on ferme le flux
-			input.close();
-		} catch (IOException e){
-			e.printStackTrace();
+		} catch (FileNotFoundException e){
+
 		}
 		return ani;
 	}
@@ -172,7 +177,7 @@ public class ThreadAnimal extends Thread {
 		// si c'est le dernier vivant qui meurt, la simulation se met en pause
 		this.leMonde.getMaFenetreLecture().PauseIfAllDead();
 	}
-	
+
 
 
 

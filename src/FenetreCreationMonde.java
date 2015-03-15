@@ -53,8 +53,11 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		label2= new JLabel("Longueur du monde");
 
 
-		Tlargeur= new JTextField("500");
-		Tlongueur= new JTextField("500");
+		Tlargeur= new JTextField("300");
+		Tlongueur= new JTextField("300");
+
+		Tlongueur.setToolTipText("Veuillez entrer un entier positif");
+		Tlargeur.setToolTipText("Veuillez entrer un entier positif");
 
 
 		button1 = new JButton ("CREER");
@@ -92,20 +95,14 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 
 				unAutreEntier = Integer.valueOf(Tlargeur.getText());
 
-				while (true) {
-
-					longueur=Integer.parseInt(Tlongueur.getText());
-					largeur = Integer.parseInt(Tlargeur.getText());
-					if  (longueur <= 0 || largeur <= 0 ) {
-						System.out.println("Une des valeurs n'est pas entière" );
-						JOptionPane.showMessageDialog(this,
-								"Une des valeurs n'est pas entière positive",
-								"warning",
-								JOptionPane.WARNING_MESSAGE);
-					} else {
-						break;
-					}
+				longueur=Integer.parseInt(Tlongueur.getText());
+				largeur = Integer.parseInt(Tlargeur.getText());
+				if  (longueur <= 0 || largeur <= 0 ) {
+					Tlargeur.setText(null); 
+					Tlongueur.setText(null);
 				}
+				longueur=Integer.parseInt(Tlongueur.getText());
+				largeur = Integer.parseInt(Tlargeur.getText());
 				this.theWorld = new MondeVirtuel(largeur,longueur,c);
 				FenetreBoutons FB = new FenetreBoutons(this.theWorld, c);
 				this.theWorld.setLaFenetreBoutons(FB);
@@ -115,6 +112,8 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 
 			} catch (NumberFormatException nfe) {
 
+				Tlargeur.setText("300"); 
+				Tlongueur.setText("300");
 				System.out.println("Une des valeurs n'est pas entière" );
 				JOptionPane.showMessageDialog(this,
 						"Une des valeurs n'est pas entière",
