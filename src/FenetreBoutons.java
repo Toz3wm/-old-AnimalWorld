@@ -270,10 +270,16 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					//on attribue une couleur aléatoire
 					Random rand = new Random();
 					// Java 'Color' class takes 3 floats, from 0 to 1.
-					float r = rand.nextFloat();
-					float g = rand.nextFloat();
-					float b = rand.nextFloat();
+					float r, g, b;
+					do {
+					 r = rand.nextFloat();
+					 g = rand.nextFloat();
+					 b = (float) 0.5 * rand.nextFloat();
+					} while ( r < b*0.1 && g < b*0.1);
+					
+					
 					CouleurCourante= new Color(r, g, b);
+
 
 					//on crée quantité - 1	 fois l'animal
 					for (int i=0;i<quantite-1;i++){
@@ -355,10 +361,16 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						//on attribue une couleur aléatoire
 						Random rand = new Random();
 						// Java 'Color' class takes 3 floats, from 0 to 1.
-						float r = rand.nextFloat();
-						float g = rand.nextFloat();
-						float b = rand.nextFloat();
+						float r, g, b;
+						do {
+						 r = rand.nextFloat();
+						 g = rand.nextFloat();
+						 b = (float) 0.5 * rand.nextFloat();
+						} while (r < b*0.1 && g < b*0.1);
+						
+						
 						CouleurCourante= new Color(r, g, b);
+
 						MonMondeVirtuel.getFenetreDuMonde().go();
 						ThreadAnimal threadtest = new ThreadAnimal(
 								estomacbis,
@@ -408,9 +420,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 				//on attribue une couleur aléatoire
 				Random rand = new Random();
 				// Java 'Color' class takes 3 floats, from 0 to 1.
-				float r = rand.nextFloat();
-				float g = rand.nextFloat();
-				float b = rand.nextFloat();
+				float r, g, b;
+				do {
+				 r = rand.nextFloat();
+				 g = rand.nextFloat();
+				 b = (float) 0.5 * rand.nextFloat();
+				} while (r < b*0.1 && g < b*0.1);
+				
+				
 				CouleurCourante= new Color(r, g, b);
 
 				ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);

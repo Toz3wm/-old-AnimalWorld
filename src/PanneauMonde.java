@@ -33,7 +33,7 @@ public class PanneauMonde extends JPanel {
 		//On choisit une couleur de fond pour le rectangle, pour pas laisser une trainée
 		gg.setColor(Color.white);
 		//On le dessine de sorte qu'il occupe toute la surface
-		gg.fillRect(0, 0, this.getWidth(), this.getHeight());
+		gg.fillRect(0, 0, this.getWidth()*2, this.getHeight()*2);
 		gg.setColor(Color.black);
 		gg.drawRect(10, 10, this.MaFenetreAssociee.getMonMondeVirtuel().getLargeur()*2,this.MaFenetreAssociee.getMonMondeVirtuel().getLongueur()*2);
 		//System.out.println("on a bien fait un repaint du monde!");
@@ -102,11 +102,11 @@ public class PanneauMonde extends JPanel {
 	public void paintAnimal(Animal unAnimal,int[] anciennePosition, int[] nouvellePosition){
 		 Graphics gg = this.getGraphics();
 		 gg.setColor(Color.white);
-		 gg.fillRect(10+anciennePosition[0], 10+anciennePosition[1], 2, 2);
+		 gg.fillRect(10+anciennePosition[0]*2, 10+anciennePosition[1]*2, 2, 2);
 		 //on récupère la couleur de l'animal
 		 gg.setColor(unAnimal.getMaCouleur());
 		 
-		 gg.fillRect(10+nouvellePosition[0], 10+nouvellePosition[1], 2, 2);
+		 gg.fillRect(10+nouvellePosition[0]*2, 10+nouvellePosition[1]*2, 2, 2);
 		this.MaFenetreAssociee.semtest.release();
 		}
 	

@@ -79,40 +79,49 @@ public class FenetreCreationMonde extends JFrame implements ActionListener {
 		et on lance la fenetreLecture
 		 */
 		if (f.getSource().equals(button1)){ 
-			
-		//on convertit le texte string en int	
+
+			//on convertit le texte string en int	
 			//on teste si le contenu est un entier
-		    try {
-		    	//on teste la longueur et la largeur
-		    	
-		        int unEntier = Integer.valueOf(Tlongueur.getText());
-		        
-		        int unAutreEntier = Integer.valueOf(Tlargeur.getText());
-		        
-		        longueur=Integer.parseInt(Tlongueur.getText());
-		        
-		        largeur = Integer.parseInt(Tlargeur.getText());
-			
-			this.theWorld = new MondeVirtuel(largeur,longueur,c);
-			FenetreBoutons FB = new FenetreBoutons(this.theWorld, c);
-			this.theWorld.setLaFenetreBoutons(FB);
-			FenetreLecture uneFenetreLecture = new FenetreLecture(this.theWorld);
-			this.theWorld.setMaFenetreLecture(uneFenetreLecture);
-			this.dispose();
-			
-		    } catch (NumberFormatException nfe) {
-		       
-		    	System.out.println("Une des valeurs n'est pas entière" );
-		        JOptionPane.showMessageDialog(this,
-		        	    "Une des valeurs n'est pas entière",
-		        	    "warning",
-		        	    JOptionPane.WARNING_MESSAGE);
-		    }
-			
-			
+			try {
+				//on teste la longueur et la largeur
+				int unEntier;
+				int unAutreEntier;
+
+
+				unEntier = Integer.valueOf(Tlongueur.getText());
+
+				unAutreEntier = Integer.valueOf(Tlargeur.getText());
+
+				while (true) {
+
+					longueur=Integer.parseInt(Tlongueur.getText());
+					largeur = Integer.parseInt(Tlargeur.getText());
+					if  (longueur <= 0 || largeur <= 0 ) {
+						System.out.println("Une des valeurs n'est pas entière" );
+						JOptionPane.showMessageDialog(this,
+								"Une des valeurs n'est pas entière positive",
+								"warning",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+						break;
+					}
+				}
+				this.theWorld = new MondeVirtuel(largeur,longueur,c);
+				FenetreBoutons FB = new FenetreBoutons(this.theWorld, c);
+				this.theWorld.setLaFenetreBoutons(FB);
+				FenetreLecture uneFenetreLecture = new FenetreLecture(this.theWorld);
+				this.theWorld.setMaFenetreLecture(uneFenetreLecture);
+				this.dispose();
+
+			} catch (NumberFormatException nfe) {
+
+				System.out.println("Une des valeurs n'est pas entière" );
+				JOptionPane.showMessageDialog(this,
+						"Une des valeurs n'est pas entière",
+						"warning",
+						JOptionPane.WARNING_MESSAGE);
+			}
 		}
-
-
 	}
 
 
