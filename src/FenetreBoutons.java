@@ -250,14 +250,14 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 				int unEntier7 = Integer.valueOf(Tquantité.getText());
 				int unEntier8 = Integer.valueOf(this.estomacInitial.getText());
 
-				
+
 				if  (unDouble1 <= 0 || unDouble2 <= 0 
 						|| unDouble1 <= 3 || unDouble1 <= 4 
 						|| unDouble1 <= 5 || unEntier6 <= 0 
 						|| unEntier7 <= 0 || unEntier8 <= 0 ) {
 					Torientation.setText(null); 
 				}
-				
+
 				//on vérifie que la simulation n'est pas en lecture
 				if (this.MonMondeVirtuel.getMaFenetreLecture().isLectureAppuye() == false){
 
@@ -280,12 +280,12 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					// Java 'Color' class takes 3 floats, from 0 to 1.
 					float r, g, b;
 					do {
-					 r = rand.nextFloat();
-					 g = rand.nextFloat();
-					 b = (float) 0.5 * rand.nextFloat();
+						r = rand.nextFloat();
+						g = rand.nextFloat();
+						b = (float) 0.5 * rand.nextFloat();
 					} while ( r < b*0.1 && g < b*0.1);
-					
-					
+
+
 					CouleurCourante= new Color(r, g, b);
 
 
@@ -371,13 +371,13 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 					namebis = (nomAnimalbis.getText());
 					quantitebis = Integer.parseInt(Tquantitébis.getText());
 
-					
+
 					if  ( unEntier7 <= 0 || unEntier8 <= 0 ) {
 						Tquantitébis.setText(null);
 						quantitebis = Integer.parseInt(Tquantitébis.getText());
 					}
-					
-					
+
+
 					//on crée quantité - 1	 fois l'animal
 					for (int i=0;i<quantitebis-1;i++){
 						//on attribue une couleur aléatoire
@@ -385,12 +385,12 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 						// Java 'Color' class takes 3 floats, from 0 to 1.
 						float r, g, b;
 						do {
-						 r = rand.nextFloat();
-						 g = rand.nextFloat();
-						 b = (float) 0.5 * rand.nextFloat();
+							r = rand.nextFloat();
+							g = rand.nextFloat();
+							b = (float) 0.5 * rand.nextFloat();
 						} while (r < b*0.1 && g < b*0.1);
-						
-						
+
+
 						CouleurCourante= new Color(r, g, b);
 
 						MonMondeVirtuel.getFenetreDuMonde().go();
@@ -446,15 +446,21 @@ public class FenetreBoutons extends JFrame implements ActionListener {
 				// Java 'Color' class takes 3 floats, from 0 to 1.
 				float r, g, b;
 				do {
-				 r = rand.nextFloat();
-				 g = rand.nextFloat();
-				 b = (float) 0.5 * rand.nextFloat();
+					r = rand.nextFloat();
+					g = rand.nextFloat();
+					b = (float) 0.5 * rand.nextFloat();
 				} while (r < b*0.1 && g < b*0.1);
-				
-				
-				CouleurCourante= new Color(r, g, b);
 
-				ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
+
+				CouleurCourante= new Color(r, g, b);
+				try {
+					ThreadAnimal threadtest = new ThreadAnimal(fileName, this.getMonMondeVirtuel(),  c);
+				} catch (NullPointerException ee){
+					JOptionPane.showMessageDialog(this,
+							"Fichier introuvable",
+							"warning",
+							JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		}
 

@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.Semaphore;
 
+import javax.swing.JOptionPane;
+
 
 public class ThreadAnimal extends Thread {
 
@@ -103,7 +105,7 @@ public class ThreadAnimal extends Thread {
 		ObjectInputStream input;
 		//on déclare l'animal qui sera créé
 		Animal ani = null;
-		try {
+		
 			try {
 				//on initialise le flux
 				input = new ObjectInputStream(
@@ -121,9 +123,7 @@ public class ThreadAnimal extends Thread {
 			} catch (IOException e){
 				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e){
-
-		}
+		
 		return ani;
 	}
 
