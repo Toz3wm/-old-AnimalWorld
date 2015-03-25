@@ -153,7 +153,7 @@ public class ThreadAnimal extends Thread {
 
 			animal.bouger(leMonde, c);
 			animal.mange(leMonde, c); 
-			System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
+		//	System.out.println(animal.getName()+" : Je suis en " + animal.getPosition()[0]+ ", " + animal.getPosition()[1] );
 
 			//mutex de control remis à 1, une fois mouvement terminé
 			this.animal.getMutexControl().release();
