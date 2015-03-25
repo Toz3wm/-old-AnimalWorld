@@ -105,25 +105,33 @@ public class ThreadAnimal extends Thread {
 		ObjectInputStream input;
 		//on déclare l'animal qui sera créé
 		Animal ani = null;
-		
-			try {
-				//on initialise le flux
-				input = new ObjectInputStream(
-						//utilisation d'un tampon
-						new BufferedInputStream(
-								new FileInputStream(
-										new File(filename))));
-				try {//on crée l'instance de l'animal à partir du fichier
-					ani = (Animal) input.readObject();
-				} catch (ClassNotFoundException e)
-				{e.printStackTrace();
-				}
-				//on ferme le flux
-				input.close();
-			} catch (IOException e){
-				e.printStackTrace();
-			}
-		
+		input = null;
+		try {
+
+			//on initialise le flux
+			input = new ObjectInputStream(
+					//utilisation d'un tampon
+					new BufferedInputStream(
+							new FileInputStream(
+									new File(filename))));
+
+
+			//on crée l'instance de l'animal à partir du fichier
+				ani = (Animal) input.readObject();
+			
+			//on ferme le flux
+			input.close();
+		}
+		 catch (IOException e){
+			System.out.println("on a levé l'exception du file not found");
+			JOptionPane.showMessageDialog(null, "Fichier introuvable !", "Attention ", JOptionPane.WARNING_MESSAGE);
+			
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			System.out.println("on a levé l'exception du file not found");
+			System.out.println(e.getClass());
+		} 
+
 		return ani;
 	}
 
